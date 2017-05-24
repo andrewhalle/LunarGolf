@@ -1,22 +1,19 @@
-var app = new PIXI.Application(800, 600, {backgroundColor : 0x1099bb});
-document.body.appendChild(app.view);
+var renderer = PIXI.autoDetectRenderer(1000, 500);
+document.body.appendChild(renderer.view);
+var stage = new PIXI.Container();
 
-// create a new Sprite from an image path
-var bunny = PIXI.Sprite.fromImage('bunny.png')
+PIXI.loader.add("bunny.png").load(setup);
 
-// center the sprite's anchor point
-bunny.anchor.set(0.5);
+var sprite;
+function setup() {
+	sprite = new PIXI.Sprite(PIXI.loader.resources["bunny.png"].texture);
+	stage.addChild(sprite);
+}
 
-// move the sprite to the center of the screen
-bunny.x = app.renderer.width / 2;
-bunny.y = app.renderer.height / 2;
+function gameLoop() {
+	requestAnimationFrame(gameLoop);
+	sprite.rotation += 0.1;
+	renderer.render(stage);
+}
 
-app.stage.addChild(bunny);
-
-// Listen for animate update
-app.ticker.add(function(delta) {
-    // just for fun, let's rotate mr rabbit a little
-    // delta is 1 if running at 100% performance
-    // creates frame-independent tranformation
-    bunny.rotation += 0.1 * delta;
-});
+gameLoop();
