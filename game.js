@@ -52,6 +52,10 @@ var thetaBooRight;
 var thetaBooLeft;
 var rocketRotBooRight = false;
 var rocketRotBooLeft = false;
+var spacebarBoo = false;
+var zkeyBoo = false;
+var powerbar;
+var initialVelocity = .1;
 
 function setup() {
   theta = 0;
@@ -72,16 +76,39 @@ function setup() {
   rocket.y = canvasHeight/2 + (rocket.height/2 + planet.width/2)*Math.sin(theta);
 	rocket.vx = 0;
 	rocket.vy = 0;
-	
-	stage.addChild(planet);
-	stage.addChild(rocket);
 
+  stage.addChild(planet);
+  stage.addChild(rocket);
+
+  
+  //adding in velocity powerbar
+  powerbar = new PIXI.DisplayObjectContainer();
+  powerbar.position.set(canvasWidth/100, canvasHeight/100);
+  stage.addChild(powerbar);
+
+  var innerbar = new PIXI.Graphics();
+  innerbar.beginFill(0xF5F5F5);
+  innerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
+  innerbar.endFill();
+  powerbar.addChild(innerbar);
+  
+  var outerbar = new PIXI.Graphics();
+  outerbar.beginFill(0xFF3300);
+  outerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
+  outerbar.endFill();
+  powerbar.addChild(outerbar);
+
+  powerbar.outer = outerbar;
+  outerbar.width = 10;
+  
 		
 	//Adding keyboard elements
 	var left = keyboard(37), 
 		up = keyboard(38),
 		right = keyboard(39),
-		down = keyboard(40);
+		down = keyboard(40)
+    spacebar = keyboard(32)
+    zkey = keyboard(90);
 
 	// setting right key press
 	right.press = function() {
@@ -89,7 +116,7 @@ function setup() {
 	};
 	right.release = function() {
     thetaBooRight = false;
-  } 
+  }; 
 
 	// setting left key press
 	left.press = function() {
@@ -97,15 +124,15 @@ function setup() {
   	};
   left.release = function() {
     thetaBooLeft = false;
-  } 
+  }; 
 
   //set up key press
 	up.press = function() {
 		rocketRotBooRight = true;
-	}
+	};
   up.release = function() {
     rocketRotBooRight = false;
-  }
+  };
 
   //set down key press
 	down.press = function() {
@@ -113,7 +140,20 @@ function setup() {
 	}	
   down.release = function() {
     rocketRotBooLeft = false;
-  }
+  };
+
+  // set spacebar
+  spacebar.press = function() {
+    spacebarBoo = true;
+  };
+
+  // set zkey for power of velocity
+  zkey.press = function() {
+    zkeyBoo = true;
+  };
+  zkey.release = function() {
+    zkeyBoo = false;
+  };
 
 	//set the game state
 	state = play;
@@ -143,6 +183,22 @@ function play() {
   if (thetaBooLeft) {
     theta -= .05;
     rocket.rotation -= .05;
+  };
+
+  //set release with spacebar
+  if (spacebarBoo) {
+    rocket.vx += (initialVelocity)*Math.sin(rocket.rotation);
+    rocket.vy += -1*(initialVelocity)*Math.cos(rocket.rotation);
+  };
+
+  //set power with zkey
+  if (zkeyBoo){
+    powerbar.outer.width += 1;
+    initialVelocity += .1;
+    if (powerbar.outer.width > canvasWidth/10) {
+      powerbar.outer.width =0;
+      initialVelocity = .1;
+    };
   };
 
   rocket.x = canvasWidth/2 + (rocket.height/2 + planet.width/2)*Math.cos(theta);

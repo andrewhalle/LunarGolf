@@ -39,6 +39,15 @@ function distance(s1, s2) {
 	return Math.sqrt(Math.pow(s1.x - s2.x, 2) + Math.pow(s1.y - s2.y, 2));
 }
 
+//velocity from gravity from planet1 on planet 2
+function gravVelocityX(planet1,planet2) {
+	return ((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet2.y - planet1.y) / distance(planet1, planet2))
+}
+
+function gravVelocityY(planet1,planet2) {
+	return ((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet2.x - planet1.x) / distance(planet1, planet2))
+}
+
 var renderer = PIXI.autoDetectRenderer(1000, 500);
 document.body.appendChild(renderer.view);
 var stage = new PIXI.Container();
@@ -56,6 +65,8 @@ function setup() {
 	sun.scale.y = 0.3;
 	sun.x = 500;
 	sun.y = 250;
+	sun.vx = 0;
+	sun.vy = 0;
 	sun.m = 1000;
 
 	earth = new PIXI.Sprite(PIXI.loader.resources["earth.png"].texture);
@@ -92,12 +103,16 @@ function setup() {
 		jupiter.y += jupiter.vy;
 
 		//earth
-		earth.vx += ((sun.m) / Math.pow(distance(sun, earth), 2)) * ((earth.y - sun.y) / distance(sun, earth)) + ((jupiter.m) / Math.pow(distance(jupiter, earth), 2)) * ((jupiter.y - earth.y) / distance(jupiter, earth));
-		earth.vy += ((sun.m) / Math.pow(distance(sun, earth), 2)) * ((earth.x - sun.x) / distance(sun, earth)) + ((jupiter.m) / Math.pow(distance(jupiter, earth), 2)) * ((jupiter.x - earth.x) / distance(jupiter, earth));
+		earth.vx += gravVelocityX(sun, earth) + gravVelocityX(jupiter, earth);
+		earth.vy += gravVelocityY(sun, earth) + gravVelocityY(jupiter,earth);
 
 		//jupiter
-		jupiter.vx += ((sun.m) / Math.pow(distance(sun, jupiter), 2)) * ((jupiter.y - sun.y) / distance(sun, jupiter)) + ((earth.m) / Math.pow(distance(jupiter, earth), 2)) * ((jupiter.y - earth.y) / distance(jupiter, earth));
-		jupiter.vy += ((sun.m) / Math.pow(distance(sun, jupiter), 2)) * ((jupiter.x - sun.x) / distance(sun, jupiter)) + ((earth.m) / Math.pow(distance(jupiter, earth), 2)) * ((jupiter.x - earth.x) / distance(jupiter, earth));
+		jupiter.vx += gravVelocityX(sun, jupiter) + gravVelocityX(earth, jupiter);
+		jupiter.vy += gravVelocityY(sun, jupiter) + gravVelocityY(earth, jupiter);
+
+		// sun
+		sun.vx = 0;
+		sun.vy = 0;
 
 		renderer.render(stage);	}
 	gameLoop();
