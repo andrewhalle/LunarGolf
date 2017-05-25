@@ -48,6 +48,11 @@ function keyboard(keyCode) {
 var planet;
 var rocket;
 var theta;
+var thetaBooRight;
+var thetaBooLeft;
+var rocketRotBooRight = false;
+var rocketRotBooLeft = false;
+
 function setup() {
   theta = 0;
 
@@ -80,33 +85,35 @@ function setup() {
 
 	// setting right key press
 	right.press = function() {
-		theta += 1.5707/5;
+		thetaBooRight = true;
 	};
-	/*right.release = function() {
-		if (!left.isDown) {
-      rocket.vx = 0;
-      rocket.vy = 0;
-    }
-	};*/ 
+	right.release = function() {
+    thetaBooRight = false;
+  } 
 
 	// setting left key press
 	left.press = function() {
-    	theta -= 1.5707/5;
+    	thetaBooLeft = true;
   	};
-  /*left.release = function() {
-  	if (!right.isDown) {
-    	rocket.vx = 0;
-    }
-  }; */ 
+  left.release = function() {
+    thetaBooLeft = false;
+  } 
 
-  	//set up key press
-  	up.press = function() {
-  		rocket.rotation += 1.5707/5;
-  	}
-    //set down key press
-  	down.press = function() {
-  		rocket.rotation -= 1.5707/5;
-  	}	
+  //set up key press
+	up.press = function() {
+		rocketRotBooRight = true;
+	}
+  up.release = function() {
+    rocketRotBooRight = false;
+  }
+
+  //set down key press
+	down.press = function() {
+		rocketRotBooLeft = true;
+	}	
+  down.release = function() {
+    rocketRotBooLeft = false;
+  }
 
 	//set the game state
 	state = play;
@@ -122,6 +129,22 @@ function gameLoop() {
 }
 
 function play() {
+  //set rocket rotation with up/down clicks
+  if (rocketRotBooRight) {
+    rocket.rotation += .05; 
+  };
+  if (rocketRotBooLeft) {
+    rocket.rotation -= .05;
+  };
+  if (thetaBooRight) {
+    theta += .05;
+    rocket.rotation += .05;
+  };
+  if (thetaBooLeft) {
+    theta -= .05;
+    rocket.rotation -= .05;
+  };
+
   rocket.x = canvasWidth/2 + (rocket.height/2 + planet.width/2)*Math.cos(theta);
   rocket.y = canvasHeight/2 + (rocket.height/2 + planet.width/2)*Math.sin(theta);
   
