@@ -47,7 +47,10 @@ function keyboard(keyCode) {
 
 var planet;
 var rocket;
+var theta;
 function setup() {
+  theta = 0;
+
 	planet = new PIXI.Sprite(PIXI.loader.resources["planet.png"].texture);
 	planet.scale.x = .2;
 	planet.scale.y = .2;
@@ -60,8 +63,8 @@ function setup() {
 	rocket.scale.y = .2;
 	rocket.anchor.set(.5,.5);
 	rocket.rotation = 1.5707;
-	rocket.x = canvasWidth/2 + rocket.height/2 + planet.width/2;
-	rocket.y = canvasHeight/2;
+	rocket.x = canvasWidth/2 + (rocket.height/2 + planet.width/2)*Math.cos(theta);
+  rocket.y = canvasHeight/2 + (rocket.height/2 + planet.width/2)*Math.sin(theta);
 	rocket.vx = 0;
 	rocket.vy = 0;
 	
@@ -74,36 +77,36 @@ function setup() {
 		up = keyboard(38),
 		right = keyboard(39),
 		down = keyboard(40);
+
 	// setting right key press
 	right.press = function() {
-		rocket.vx = +1;
-		rocket.vy = 0;
+		theta += 1.5707/5;
 	};
-	right.release = function() {
+	/*right.release = function() {
 		if (!left.isDown) {
       rocket.vx = 0;
       rocket.vy = 0;
     }
-	};
+	};*/ 
+
 	// setting left key press
 	left.press = function() {
-    	rocket.vx = -1;
-    	rocket.vy = 0;
+    	theta -= 1.5707/5;
   	};
-  	left.release = function() {
-    	if (!right.isDown) {
-      	rocket.vx = 0;
-    	}
-  	};
+  /*left.release = function() {
+  	if (!right.isDown) {
+    	rocket.vx = 0;
+    }
+  }; */ 
+
   	//set up key press
   	up.press = function() {
   		rocket.rotation += 1.5707/5;
   	}
+    //set down key press
   	down.press = function() {
   		rocket.rotation -= 1.5707/5;
-  	}
-
-	
+  	}	
 
 	//set the game state
 	state = play;
@@ -119,6 +122,9 @@ function gameLoop() {
 }
 
 function play() {
+  rocket.x = canvasWidth/2 + (rocket.height/2 + planet.width/2)*Math.cos(theta);
+  rocket.y = canvasHeight/2 + (rocket.height/2 + planet.width/2)*Math.sin(theta);
+  
 	rocket.x += rocket.vx
 	rocket.y += rocket.vy
 }
