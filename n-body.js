@@ -41,11 +41,11 @@ function distance(s1, s2) {
 
 //velocity from gravity from planet1 on planet 2
 function gravVelocityX(planet1,planet2) {
-	return ((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet2.y - planet1.y) / distance(planet1, planet2))
+	return 1*((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet1.x - planet2.x) / distance(planet1, planet2))
 }
 
 function gravVelocityY(planet1,planet2) {
-	return ((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet2.x - planet1.x) / distance(planet1, planet2))
+	return 1*((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet1.y - planet2.y) / distance(planet1, planet2))
 }
 
 var renderer = PIXI.autoDetectRenderer(1000, 500);
@@ -62,12 +62,12 @@ function setup() {
 	sun.anchor.x = 0.5;
 	sun.anchor.y = 0.5;
 	sun.scale.x = 0.3;
-	sun.scale.y = 0.3;
+	sun.scale.y = 0.3
 	sun.x = 500;
 	sun.y = 250;
 	sun.vx = 0;
 	sun.vy = 0;
-	sun.m = 1000;
+	sun.m = 500;
 
 	earth = new PIXI.Sprite(PIXI.loader.resources["earth.png"].texture);
 	earth.anchor.x = 0.5;
@@ -76,8 +76,8 @@ function setup() {
 	earth.scale.y = 0.1;
 	earth.x = 700;
 	earth.y = 250;
-	earth.vx = 0;
-	earth.vy = -2;
+	earth.vx = -1;
+	earth.vy = -1;
 	earth.m = 1;
 
 	jupiter = new PIXI.Sprite(PIXI.loader.resources["jupiter.png"].texture);
@@ -104,16 +104,17 @@ function setup() {
 
 		//earth
 		earth.vx += gravVelocityX(sun, earth) + gravVelocityX(jupiter, earth);
-		earth.vy += gravVelocityY(sun, earth) + gravVelocityY(jupiter,earth);
+		earth.vy += gravVelocityY(sun, earth) - gravVelocityY(jupiter,earth);
 
 		//jupiter
 		jupiter.vx += gravVelocityX(sun, jupiter) + gravVelocityX(earth, jupiter);
-		jupiter.vy += gravVelocityY(sun, jupiter) + gravVelocityY(earth, jupiter);
+		jupiter.vy += gravVelocityY(sun, jupiter) - gravVelocityY(earth, jupiter);
 
 		// sun
 		sun.vx = 0;
 		sun.vy = 0;
 
-		renderer.render(stage);	}
+		renderer.render(stage);	
+	}
 	gameLoop();
 }

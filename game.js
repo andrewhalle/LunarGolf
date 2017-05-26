@@ -55,7 +55,7 @@ var rocketRotBooLeft = false;
 var spacebarBoo = false;
 var zkeyBoo = false;
 var powerbar;
-var initialVelocity = .1;
+var initialVelocity = 1;
 
 function setup() {
   theta = 0;
@@ -185,12 +185,6 @@ function play() {
     rocket.rotation -= .05;
   };
 
-  //set release with spacebar
-  if (spacebarBoo) {
-    rocket.vx += (initialVelocity)*Math.sin(rocket.rotation);
-    rocket.vy += -1*(initialVelocity)*Math.cos(rocket.rotation);
-  };
-
   //set power with zkey
   if (zkeyBoo){
     powerbar.outer.width += 1;
@@ -199,6 +193,16 @@ function play() {
       powerbar.outer.width =0;
       initialVelocity = .1;
     };
+  };
+
+  //set release with spacebar
+  if (spacebarBoo) {
+    rocket.vx += (initialVelocity)*Math.sin(rocket.rotation);
+    rocket.vy += -1*(initialVelocity)*Math.cos(rocket.rotation);
+    thetaBooLeft = false;
+    thetaBooRight = false;
+    rocketRotBooLeft = false;
+    rocketRotBooRight = false;
   };
 
   rocket.x = canvasWidth/2 + (rocket.height/2 + planet.width/2)*Math.cos(theta);
