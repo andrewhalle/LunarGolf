@@ -56,9 +56,9 @@ var stage = new PIXI.Container();
 var sun;
 var earth;
 var jupiter;
-PIXI.loader.add(["sun.png", "earth.png", "jupiter.png"]).load(setup);
+PIXI.loader.add(["images/sun.png", "images/earth.png", "images/jupiter.png"]).load(setup);
 function setup() {
-	sun = new PIXI.Sprite(PIXI.loader.resources["sun.png"].texture);
+	sun = new PIXI.Sprite(PIXI.loader.resources["images/sun.png"].texture);
 	sun.anchor.x = 0.5;
 	sun.anchor.y = 0.5;
 	sun.scale.x = 0.3;
@@ -69,7 +69,7 @@ function setup() {
 	sun.vy = 0;
 	sun.m = 500;
 
-	earth = new PIXI.Sprite(PIXI.loader.resources["earth.png"].texture);
+	earth = new PIXI.Sprite(PIXI.loader.resources["images/earth.png"].texture);
 	earth.anchor.x = 0.5;
 	earth.anchor.y = 0.5;
 	earth.scale.x = 0.1;
@@ -80,7 +80,7 @@ function setup() {
 	earth.vy = -1;
 	earth.m = 1;
 
-	jupiter = new PIXI.Sprite(PIXI.loader.resources["jupiter.png"].texture);
+	jupiter = new PIXI.Sprite(PIXI.loader.resources["images/jupiter.png"].texture);
 	jupiter.anchor.x = 0.5;
 	jupiter.anchor.y = 0.5;
 	jupiter.scale.x = 0.2;

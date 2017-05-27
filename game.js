@@ -5,7 +5,7 @@ var renderer = PIXI.autoDetectRenderer(canvasWidth, canvasHeight);
 document.body.appendChild(renderer.view);
 var stage = new PIXI.Container();
 
-PIXI.loader.add("planet.png").add("rocket.png").load(setup);
+PIXI.loader.add("images/planet.png").add("images/rocket.png").load(setup);
 
 // implementing keyboard actions
 function keyboard(keyCode) {
@@ -60,14 +60,14 @@ var initialVelocity = 1;
 function setup() {
   theta = 0;
 
-	planet = new PIXI.Sprite(PIXI.loader.resources["planet.png"].texture);
+	planet = new PIXI.Sprite(PIXI.loader.resources["images/planet.png"].texture);
 	planet.scale.x = .2;
 	planet.scale.y = .2;
 	planet.anchor.set(.5,.5);
 	planet.x = canvasWidth/2;
 	planet.y = canvasHeight/2;
 	
-	rocket = new PIXI.Sprite(PIXI.loader.resources["rocket.png"].texture);
+	rocket = new PIXI.Sprite(PIXI.loader.resources["images/rocket.png"].texture);
 	rocket.scale.x = .2;
 	rocket.scale.y = .2;
 	rocket.anchor.set(.5,.5);
