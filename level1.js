@@ -4,7 +4,7 @@ var renderer = PIXI.autoDetectRenderer(canvasWidth, canvasHeight);
 document.body.appendChild(renderer.view);
 var stage = new PIXI.Container();
 
-PIXI.loader.add("planet.png").add("rocket.png").add("moon.png").add("blackhole.png").load(setup);
+PIXI.loader.add("images/planet.png").add("images/rocket.png").add("images/moon.png").add("images/blackhole.png").load(setup);
 
 // implementing keyboard actions
 function keyboard(keyCode) {
@@ -108,14 +108,14 @@ var endGameMessage;
 function setup() {
   theta = 0;
 
-	planet = new PIXI.Sprite(PIXI.loader.resources["planet.png"].texture);
+	planet = new PIXI.Sprite(PIXI.loader.resources["images/planet.png"].texture);
 	planet.scale.x = .2;
 	planet.scale.y = .2;
 	planet.anchor.set(.5,.5);
 	planet.x = canvasWidth/5;
 	planet.y = canvasHeight/2;
 	
-	rocket = new PIXI.Sprite(PIXI.loader.resources["rocket.png"].texture);
+	rocket = new PIXI.Sprite(PIXI.loader.resources["images/rocket.png"].texture);
 	rocket.scale.x = .2;
 	rocket.scale.y = .2;
 	rocket.anchor.set(.5,.5);
@@ -126,7 +126,7 @@ function setup() {
 	rocket.vy = 0;
   rocket.m = 1;
 
-  moon = new PIXI.Sprite(PIXI.loader.resources["moon.png"].texture);
+  moon = new PIXI.Sprite(PIXI.loader.resources["images/moon.png"].texture);
   moon.anchor.x = 0.5;
   moon.anchor.y = 0.5;
   moon.scale.x = 0.3;
@@ -137,7 +137,7 @@ function setup() {
   moon.vy = 0;
   moon.m = 10000;
 
-  blackhole = new PIXI.Sprite(PIXI.loader.resources["blackhole.png"].texture);
+  blackhole = new PIXI.Sprite(PIXI.loader.resources["images/blackhole.png"].texture);
   blackhole.anchor.x = .5;
   blackhole.anchor.y = .5;
   blackhole.scale.x = .5;
