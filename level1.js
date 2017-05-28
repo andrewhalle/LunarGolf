@@ -107,6 +107,7 @@ var endGameMessage;
 
 function setup() {
   theta = 0;
+  initialVelocity = 1;
 
 	planet = new PIXI.Sprite(PIXI.loader.resources["images/planet.png"].texture);
 	planet.scale.x = .2;
