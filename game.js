@@ -148,7 +148,7 @@ function KeyboardFunc() {
 		gameObject.zkey.release = function() {
 			gameObject.zkeyBoo = false;
 		};
-};
+}
 
 function setup() {
 	gameObject.t = new Tink(PIXI, renderer.view);
@@ -157,14 +157,16 @@ function setup() {
 		gameObject.sprites[gameObject.images[i]] = new PIXI.Sprite(PIXI.loader.resources[gameObject.images[i]].texture);
 	}
 
-	gameLoop();};
+	gameLoop();
+}
 
 function gameLoop() {
 	requestAnimationFrame(gameLoop);
 	gameObject.state();
 	gameObject.time += 1/60;
 	gameObject.t.update();
-	renderer.render(stage);};
+	renderer.render(stage);
+}
 
 function splash() {
 	if (gameObject.time == 0) {
@@ -187,7 +189,8 @@ function splash() {
 	} else {
 		gameObject.setupMainMenu = true;
 		gameObject.state = mainMenu;
-	}};
+	}
+}
 
 function mainMenu() {
 	if (gameObject.setupMainMenu) {
@@ -213,7 +216,8 @@ function mainMenu() {
 		stage.addChild(playButton)
 
 		delete gameObject.setupMainMenu;
-	}};
+	}
+}
 
 function levelMenu() {
 	if (gameObject.setupLevelMenu) {
@@ -231,7 +235,8 @@ function levelMenu() {
 		delete gameObject.setupLevelMenu;
 
 		// Add in help button, with description of how to play
-	}};
+	}
+}
 
 function level1() {
 	if (gameObject.level1Setup) {
@@ -325,6 +330,8 @@ function level1() {
 		    }
 		}
 
+		scoreCounter.text = "Score = " + gameObject.scoreNumber;
+
 		//set release with spacebar
 		if (gameObject.spacebarBoo) {
 		    rocket.vx += (gameObject.initialVelocity)*Math.sin(rocket.rotation) 
@@ -340,7 +347,7 @@ function level1() {
 		  } else {
 		  	rocket.vx = 0;
 		  	rocket.vy = 0;
-		  };
+		}
 
 		rocket.x = planet.x + (rocket.height/2 + planet.width/2)*Math.cos(gameObject.theta);
 		rocket.y = planet.y + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
