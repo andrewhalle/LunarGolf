@@ -11,6 +11,8 @@ gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.p
 
 PIXI.loader.add(gameObject.images).load(setup);
 
+//Functions are all folded, to toggle command+alt+ [ (or) ]
+
 // distance function
 function distance(s1, s2) {
   return Math.sqrt(Math.pow(s1.x - s2.x, 2) + Math.pow(s1.y - s2.y, 2));
@@ -25,6 +27,39 @@ function gravVelocityY(planet1,planet2) {
   return 1*((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet1.y - planet2.y) / distance(planet1, planet2))
 }
 
+// places both the planet and rocket onto the screen
+function PlanetAndRocket(planet,rocket,xspace,yspace) {
+			
+		planet.scale.x = .2;
+		planet.scale.y = .2;
+		planet.anchor.set(.5,.5);
+		planet.x = xspace;
+		planet.y = yspace;
+		planet.m = 1000
+
+		rocket.scale.x = .2;
+		rocket.scale.y = .2;
+		rocket.anchor.set(.5,.5);
+		rocket.rotation = 1.5707;
+		rocket.x = planet.x + (rocket.height/2 + planet.width/2)*Math.cos(gameObject.theta);
+		rocket.y = planet.y + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
+		rocket.vx = 0;
+		rocket.vy = 0;
+		rocket.m = 1;};
+
+// places any single object, ex: moon, blackhole, etc
+function PlaceAstroObject(AstroObject,xspace,yspace, xscale,yscale,mass) {
+		AstroObject.anchor.x = 0.5;
+		AstroObject.anchor.y = 0.5;
+		AstroObject.scale.x = xscale;
+		AstroObject.scale.y = yscale;
+		AstroObject.x = xspace;
+		AstroObject.y = yspace;
+		AstroObject.vx = 0;
+		AstroObject.vy = 0;
+		AstroObject.m = mass;};
+
+// command + option + [(fold)/ ](unfold)
 function hitTestRectangle(r1, r2) {
 
   //Calculate `centerX` and `centerY` properties on the sprites
@@ -51,178 +86,11 @@ function hitTestRectangle(r1, r2) {
   }
 
   //Return the value of `collision` back to the main program
-  return collision;
-}
+  return collision;};
 
-function setup() {
-	gameObject.t = new Tink(PIXI, renderer.view);
-	gameObject.sprites = {};
-	for (var i = 0; i < gameObject.images.length; i++) {
-		gameObject.sprites[gameObject.images[i]] = new PIXI.Sprite(PIXI.loader.resources[gameObject.images[i]].texture);
-	}
-
-	gameLoop();
-}
-
-function gameLoop() {
-	requestAnimationFrame(gameLoop);
-	gameObject.state();
-	gameObject.time += 1/60;
-	gameObject.t.update();
-	renderer.render(stage);
-}
-
-function splash() {
-	if (gameObject.time == 0) {
-		var splashText = new PIXI.Text(
-			"Two Nerds Games",
-			{fontFamily: "Arial", fontSize: 32, fill: "white"}
-		);
-		splashText.alpha = 0;
-		splashText.anchor.x = 0.5;
-		splashText.anchor.y = 0.5;
-		splashText.position.set(canvasWidth / 2, canvasHeight / 2);
-		gameObject.sprites["splashText"] = splashText;
-		stage.addChild(splashText);
-	} else if (gameObject.time < 1) {
-		gameObject.sprites["splashText"].alpha += 1 / 60;
-	} else if (gameObject.time < 4) {
-		gameObject.sprites["splashText"].alpha = 1;
-	} else if (gameObject.time < 5) {
-		gameObject.sprites["splashText"].alpha -= 1 / 60;
-	} else {
-		gameObject.setupMainMenu = true;
-		gameObject.state = mainMenu;
-	}
-}
-
-function mainMenu() {
-	if (gameObject.setupMainMenu) {
-		stage.removeChild(gameObject.sprites["splashText"]);
-		var title = new PIXI.Text(
-			"Lunar Golf",
-			{fontFamily: "Arial", fontSize: 32, fill: "white"}
-		);
-		title.anchor.x = 0.5;
-		title.anchor.y = 0.5;
-		title.position.set(canvasWidth / 2, canvasHeight / 4);
-		gameObject.sprites["title"] = title;
-		stage.addChild(title);
-		var playButton = gameObject.t.button([PIXI.loader.resources["images/up.png"].texture, PIXI.loader.resources["images/over.png"].texture, PIXI.loader.resources["images/down.png"].texture], canvasWidth / 2, 0.6 * canvasHeight);
-		playButton.anchor.x = 0.5;
-		playButton.anchor.y = 0.5;
-		playButton.tap = function() {
-			gameObject.state = levelMenu;
-			gameObject.setupLevelMenu = true;
-		};
-		gameObject.sprites["playButton"] = playButton;
-		stage.addChild(playButton)
-		delete gameObject.setupMainMenu;
-	}
-}
-
-function levelMenu() {
-	if (gameObject.setupLevelMenu) {
-		stage.removeChild(gameObject.sprites["title"]);
-		stage.removeChild(gameObject.sprites["playButton"]);
-		var level1Button = gameObject.t.button([PIXI.loader.resources["images/1_up.png"].texture, PIXI.loader.resources["images/1_over.png"].texture, PIXI.loader.resources["images/1_down.png"].texture], canvasWidth / 10, canvasHeight / 10);
-		level1Button.anchor.x = 0.5;
-		level1Button.anchor.y = 0.5;
-		level1Button.release = function() {
-			gameObject.state = level1;
-			gameObject.level1Setup = true;
-		};
-		gameObject.sprites["level1Button"] = level1Button;
-		stage.addChild(level1Button);
-		delete gameObject.setupLevelMenu;
-	}
-}
-
-function level1() {
-	if (gameObject.level1Setup) {
-		if (!gameObject.notFirstPlay) {
-			gameObject.scoreNumber = 0;
-		}
-		stage.removeChild(gameObject.sprites["level1Button"]);
-		gameObject.theta = 0;
-		gameObject.initialVelocity = 1;
-
-		var planet = gameObject.sprites["images/planet.png"]
-		planet.scale.x = .2;
-		planet.scale.y = .2;
-		planet.anchor.set(.5,.5);
-		planet.x = canvasWidth/5;
-		planet.y = canvasHeight/2;
-
-		var rocket = gameObject.sprites["images/rocket.png"]
-		rocket.scale.x = .2;
-		rocket.scale.y = .2;
-		rocket.anchor.set(.5,.5);
-		rocket.rotation = 1.5707;
-		rocket.x = canvasWidth/5 + (rocket.height/2 + planet.width/2)*Math.cos(gameObject.theta);
-		rocket.y = canvasHeight/2 + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
-		rocket.vx = 0;
-		rocket.vy = 0;
-		rocket.m = 1;
-
-		var moon = gameObject.sprites["images/moon.png"]
-		moon.anchor.x = 0.5;
-		moon.anchor.y = 0.5;
-		moon.scale.x = 0.3;
-		moon.scale.y = 0.3
-		moon.x = canvasWidth/2;
-		moon.y = canvasHeight/2;
-		moon.vx = 0;
-		moon.vy = 0;
-		moon.m = 10000;
-
-		var blackhole = gameObject.sprites["images/blackhole.png"]
-		blackhole.anchor.x = .5;
-		blackhole.anchor.y = .5;
-		blackhole.scale.x = .5;
-		blackhole.scale.y = .5;
-		blackhole.x = canvasWidth*(4/5);
-		blackhole.y = canvasHeight/2;
-		blackhole.vx = 0;
-		blackhole.vy = 0;
-		blackhole.m = 100000;
-
-		stage.addChild(planet);
-		stage.addChild(rocket);
-		stage.addChild(moon);
-		stage.addChild(blackhole);
-
-
-		//adding in velocity powerbar
-		var powerbar = new PIXI.DisplayObjectContainer();
-		powerbar.position.set(canvasWidth/100, canvasHeight/100);
-		gameObject.sprites["powerbar"] = powerbar;
-		stage.addChild(powerbar);
-
-		var innerbar = new PIXI.Graphics();
-		innerbar.beginFill(0xF5F5F5);
-		innerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
-		innerbar.endFill();
-		powerbar.addChild(innerbar);
-
-		var outerbar = new PIXI.Graphics();
-		outerbar.beginFill(0xFF3300);
-		outerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
-		outerbar.endFill();
-		powerbar.addChild(outerbar);
-
-		powerbar.outer = outerbar;
-		outerbar.width = 10;
-
-
-		var scoreCounter = new PIXI.Text("Score = "+ gameObject.scoreNumber,
-		{fontFamily: "Arial", fontSize: 20, fill: 0xFFFFFF, align: 'center'});
-		scoreCounter.x = canvasWidth/100;
-		scoreCounter.y = 2*canvasHeight/100;
-		gameObject.sprites["scoreCounter"] = scoreCounter;
-		stage.addChild(scoreCounter);
-
-		//Adding keyboard elements
+// adds keyboard functionality
+function KeyboardFunc() {
+	//Adding keyboard elements
 		gameObject.left = gameObject.t.keyboard(37);
 		gameObject.up = gameObject.t.keyboard(38);
 		gameObject.right = gameObject.t.keyboard(39);
@@ -268,6 +136,11 @@ function level1() {
 			gameObject.spacebarBoo = true;
 		};
 
+		gameObject.xkey.press = function(){
+			gameObject.spacebarBoo = false;
+			gameObject.scoreNumber += 1;
+		};
+
 		// set zkey for power of velocity
 		gameObject.zkey.press = function() {
 			gameObject.zkeyBoo = true;
@@ -275,8 +148,149 @@ function level1() {
 		gameObject.zkey.release = function() {
 			gameObject.zkeyBoo = false;
 		};
+};
+
+function setup() {
+	gameObject.t = new Tink(PIXI, renderer.view);
+	gameObject.sprites = {};
+	for (var i = 0; i < gameObject.images.length; i++) {
+		gameObject.sprites[gameObject.images[i]] = new PIXI.Sprite(PIXI.loader.resources[gameObject.images[i]].texture);
+	}
+
+	gameLoop();};
+
+function gameLoop() {
+	requestAnimationFrame(gameLoop);
+	gameObject.state();
+	gameObject.time += 1/60;
+	gameObject.t.update();
+	renderer.render(stage);};
+
+function splash() {
+	if (gameObject.time == 0) {
+		var splashText = new PIXI.Text(
+			"Two Nerds Games",
+			{fontFamily: "Arial", fontSize: 32, fill: "white"}
+		);
+		splashText.alpha = 0;
+		splashText.anchor.x = 0.5;
+		splashText.anchor.y = 0.5;
+		splashText.position.set(canvasWidth / 2, canvasHeight / 2);
+		gameObject.sprites["splashText"] = splashText;
+		stage.addChild(splashText);
+	} else if (gameObject.time < 1) {
+		gameObject.sprites["splashText"].alpha += 1 / 60;
+	} else if (gameObject.time < 4) {
+		gameObject.sprites["splashText"].alpha = 1;
+	} else if (gameObject.time < 5) {
+		gameObject.sprites["splashText"].alpha -= 1 / 60;
+	} else {
+		gameObject.setupMainMenu = true;
+		gameObject.state = mainMenu;
+	}};
+
+function mainMenu() {
+	if (gameObject.setupMainMenu) {
+		stage.removeChild(gameObject.sprites["splashText"]);
+		var title = new PIXI.Text(
+			"Lunar Golf",
+			{fontFamily: "Arial", fontSize: 32, fill: "white"}
+		);
+		title.anchor.x = 0.5;
+		title.anchor.y = 0.5;
+		title.position.set(canvasWidth / 2, canvasHeight / 4);
+		gameObject.sprites["title"] = title;
+		stage.addChild(title);
+
+		var playButton = gameObject.t.button([PIXI.loader.resources["images/up.png"].texture, PIXI.loader.resources["images/over.png"].texture, PIXI.loader.resources["images/down.png"].texture], canvasWidth / 2, 0.6 * canvasHeight);
+		playButton.anchor.x = 0.5;
+		playButton.anchor.y = 0.5;
+		playButton.tap = function() {
+			gameObject.state = levelMenu;
+			gameObject.setupLevelMenu = true;
+		};
+		gameObject.sprites["playButton"] = playButton;
+		stage.addChild(playButton)
+
+		delete gameObject.setupMainMenu;
+	}};
+
+function levelMenu() {
+	if (gameObject.setupLevelMenu) {
+		stage.removeChild(gameObject.sprites["title"]);
+		stage.removeChild(gameObject.sprites["playButton"]);
+		var level1Button = gameObject.t.button([PIXI.loader.resources["images/1_up.png"].texture, PIXI.loader.resources["images/1_over.png"].texture, PIXI.loader.resources["images/1_down.png"].texture], canvasWidth / 10, canvasHeight / 10);
+		level1Button.anchor.x = 0.5;
+		level1Button.anchor.y = 0.5;
+		level1Button.release = function() {
+			gameObject.state = level1;
+			gameObject.level1Setup = true;
+		};
+		gameObject.sprites["level1Button"] = level1Button;
+		stage.addChild(level1Button);
+		delete gameObject.setupLevelMenu;
+
+		// Add in help button, with description of how to play
+	}};
+
+function level1() {
+	if (gameObject.level1Setup) {
+		if (!gameObject.notFirstPlay) {
+			gameObject.scoreNumber = 0;
+		}
+		stage.removeChild(gameObject.sprites["level1Button"]);
+		gameObject.theta = 0;
+		gameObject.initialVelocity = 1;
+
+		var planet = gameObject.sprites["images/planet.png"]
+		var rocket = gameObject.sprites["images/rocket.png"]
+		var moon = gameObject.sprites["images/moon.png"]
+		var blackhole = gameObject.sprites["images/blackhole.png"]
+
+		PlanetAndRocket(planet,rocket,canvasWidth/5,canvasHeight/2)
+		PlaceAstroObject(moon, canvasWidth/2, canvasHeight/2, .3,.3,10000)
+		PlaceAstroObject(blackhole, canvasWidth*(4/5), canvasHeight/2, .5,.5,100000)
+
+		stage.addChild(planet);
+		stage.addChild(rocket);
+		stage.addChild(moon);
+		stage.addChild(blackhole);
+
+
+		//adding in velocity powerbar
+		var powerbar = new PIXI.DisplayObjectContainer();
+		powerbar.position.set(canvasWidth/100, canvasHeight/100);
+		gameObject.sprites["powerbar"] = powerbar;
+		stage.addChild(powerbar);
+
+		var innerbar = new PIXI.Graphics();
+		innerbar.beginFill(0xF5F5F5);
+		innerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
+		innerbar.endFill();
+		powerbar.addChild(innerbar);
+
+		var outerbar = new PIXI.Graphics();
+		outerbar.beginFill(0xFF3300);
+		outerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
+		outerbar.endFill();
+		powerbar.addChild(outerbar);
+
+		powerbar.outer = outerbar;
+		outerbar.width = 10;
+
+
+		var scoreCounter = new PIXI.Text("Score = "+ gameObject.scoreNumber,
+		{fontFamily: "Arial", fontSize: 20, fill: 0xFFFFFF, align: 'center'});
+		scoreCounter.x = canvasWidth/100;
+		scoreCounter.y = 2*canvasHeight/100;
+		gameObject.sprites["scoreCounter"] = scoreCounter;
+		stage.addChild(scoreCounter);
+
+		KeyboardFunc();
+
 		delete gameObject.level1Setup;
 		gameObject.level1play = true;
+
 	} else if (gameObject.level1play) {
 		var rocket = gameObject.sprites["images/rocket.png"];
 		var powerbar = gameObject.sprites["powerbar"];
@@ -284,6 +298,7 @@ function level1() {
 		var blackhole = gameObject.sprites["images/blackhole.png"];
 		var planet = gameObject.sprites["images/planet.png"];
 		var scoreCounter = gameObject.sprites["scoreCounter"];
+
 		//set rocket rotation with up/down clicks
 	  	if (gameObject.rocketRotBooRight) {
 			rocket.rotation += .05; 
@@ -312,16 +327,23 @@ function level1() {
 
 		//set release with spacebar
 		if (gameObject.spacebarBoo) {
-		    rocket.vx += (gameObject.initialVelocity)*Math.sin(rocket.rotation) + gravVelocityX(moon,rocket) + gravVelocityX(blackhole,rocket);
-		    rocket.vy += -1*(gameObject.initialVelocity)*Math.cos(rocket.rotation) + gravVelocityY(moon,rocket) + gravVelocityY(blackhole,rocket);
+		    rocket.vx += (gameObject.initialVelocity)*Math.sin(rocket.rotation) 
+		    	+ gravVelocityX(moon,rocket) + gravVelocityX(blackhole,rocket)
+		    	+ gravVelocityX(planet,rocket);
+		    rocket.vy += -1*(gameObject.initialVelocity)*Math.cos(rocket.rotation)
+		    	 + gravVelocityY(moon,rocket) + gravVelocityY(blackhole,rocket)
+		    	 +gravVelocityY(planet,rocket);
 		    gameObject.thetaBooLeft = false;
 		    gameObject.thetaBooRight = false;
 		    gameObject.rocketRotBooLeft = false;
 		    gameObject.rocketRotBooRight = false;
-		  }
+		  } else {
+		  	rocket.vx = 0;
+		  	rocket.vy = 0;
+		  };
 
-		rocket.x = canvasWidth/5 + (rocket.height/2 + planet.width/2)*Math.cos(gameObject.theta);
-		rocket.y = canvasHeight/2 + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
+		rocket.x = planet.x + (rocket.height/2 + planet.width/2)*Math.cos(gameObject.theta);
+		rocket.y = planet.y + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
 		rocket.x += rocket.vx
 		rocket.y += rocket.vy
 
