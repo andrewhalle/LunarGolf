@@ -152,6 +152,7 @@ function KeyboardFunc() {
 
 function setup() {
 	gameObject.t = new Tink(PIXI, renderer.view);
+	KeyboardFunc();
 	gameObject.sprites = {};
 	for (var i = 0; i < gameObject.images.length; i++) {
 		gameObject.sprites[gameObject.images[i]] = new PIXI.Sprite(PIXI.loader.resources[gameObject.images[i]].texture);
@@ -290,8 +291,6 @@ function level1() {
 		scoreCounter.y = 2*canvasHeight/100;
 		gameObject.sprites["scoreCounter"] = scoreCounter;
 		stage.addChild(scoreCounter);
-
-		KeyboardFunc();
 
 		delete gameObject.level1Setup;
 		gameObject.level1play = true;
