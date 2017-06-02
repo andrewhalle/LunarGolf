@@ -229,8 +229,8 @@ function levelMenu() {
 		level1Button.anchor.x = 0.5;
 		level1Button.anchor.y = 0.5;
 		level1Button.release = function() {
-			gameObject.state = level1;
-			gameObject.level1Setup = true;
+			gameObject.levelNumber = 1;
+			gameObject.state = levelSetup;
 		};
 		gameObject.sprites["level1Button"] = level1Button;
 		stage.addChild(level1Button);
@@ -238,6 +238,11 @@ function levelMenu() {
 
 		// Add in help button, with description of how to play
 	}
+}
+
+function levelSetup() {
+	stage.removeChildren();
+	//place sprites
 }
 
 function level1() {
