@@ -8,6 +8,7 @@ var gameObject = {};
 gameObject.time = 0;
 gameObject.state = splash;
 gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png"]  //replace this with function that gets all images in directory
+gameObject.levels = levels;
 
 PIXI.loader.add(gameObject.images).load(setup);
 
@@ -86,7 +87,8 @@ function hitTestRectangle(r1, r2) {
   }
 
   //Return the value of `collision` back to the main program
-  return collision;};
+  return collision;
+}
 
 // adds keyboard functionality
 function KeyboardFunc() {
@@ -195,7 +197,7 @@ function splash() {
 
 function mainMenu() {
 	if (gameObject.setupMainMenu) {
-		stage.removeChild(gameObject.sprites["splashText"]);
+		stage.removeChildren();
 		var title = new PIXI.Text(
 			"Lunar Golf",
 			{fontFamily: "Arial", fontSize: 32, fill: "white"}
@@ -222,8 +224,7 @@ function mainMenu() {
 
 function levelMenu() {
 	if (gameObject.setupLevelMenu) {
-		stage.removeChild(gameObject.sprites["title"]);
-		stage.removeChild(gameObject.sprites["playButton"]);
+		stage.removeChildren();
 		var level1Button = gameObject.t.button([PIXI.loader.resources["images/1_up.png"].texture, PIXI.loader.resources["images/1_over.png"].texture, PIXI.loader.resources["images/1_down.png"].texture], canvasWidth / 10, canvasHeight / 10);
 		level1Button.anchor.x = 0.5;
 		level1Button.anchor.y = 0.5;
@@ -244,7 +245,7 @@ function level1() {
 		if (!gameObject.notFirstPlay) {
 			gameObject.scoreNumber = 0;
 		}
-		stage.removeChild(gameObject.sprites["level1Button"]);
+		stage.removeChildren();
 		gameObject.theta = 0;
 		gameObject.initialVelocity = 1;
 
@@ -354,12 +355,7 @@ function level1() {
 		rocket.y += rocket.vy
 
 		if (hitTestRectangle(rocket, blackhole)) {
-		    stage.removeChild(planet);
-		    stage.removeChild(moon);
-		    stage.removeChild(blackhole);
-		    stage.removeChild(rocket);
-		    stage.removeChild(powerbar);
-		    stage.removeChild(scoreCounter);
+		    stage.removeChildren();
 		    gameObject.state = levelMenu;
 		    gameObject.spacebarBoo = false;
 		    gameObject.setupLevelMenu = true;
@@ -368,12 +364,7 @@ function level1() {
 		}
 
 		if (hitTestRectangle(rocket, moon)) {
-		    stage.removeChild(planet);
-		    stage.removeChild(moon);
-		    stage.removeChild(blackhole);
-		    stage.removeChild(rocket);
-		    stage.removeChild(powerbar);
-		    stage.removeChild(scoreCounter);
+		    stage.removeChildren();
 
 		    gameObject.spacebarBoo = false;
 		    gameObject.scoreNumber += 1;
