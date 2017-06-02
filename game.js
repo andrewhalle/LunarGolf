@@ -7,7 +7,7 @@ document.body.appendChild(renderer.view);
 var gameObject = {};
 gameObject.time = 0;
 gameObject.state = splash;
-gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png"]  //replace this with function that gets all images in directory
+gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png", "images/2_up.png", "images/2_over.png", "images/2_down.png"]  //replace this with function that gets all images in directory
 gameObject.levels = levels;
 gameObject.sprites = {};
 
@@ -74,10 +74,10 @@ function PlaceAstroObject(AstroObject,xspace,yspace, xscale,yscale,mass) {
 function hitTestRectangle(r1, r2) {
 
   //Calculate `centerX` and `centerY` properties on the sprites
-  r1.centerX = r1.x + r1.width / 2;
-  r1.centerY = r1.y + r1.height / 2;
-  r2.centerX = r2.x + r2.width / 2;
-  r2.centerY = r2.y + r2.height / 2;
+  r1.centerX = r1.x;// + r1.width / 2;
+  r1.centerY = r1.y;// + r1.height / 2;
+  r2.centerX = r2.x;// + r2.width / 2;
+  r2.centerY = r2.y;// + r2.height / 2;
 
   //Calculate the `halfWidth` and `halfHeight` properties of the sprites
   r1.halfWidth = r1.width / 2;
@@ -103,66 +103,65 @@ function hitTestRectangle(r1, r2) {
 // adds keyboard functionality
 function KeyboardFunc() {
 	//Adding keyboard elements
-		gameObject.left = gameObject.t.keyboard(37);
-		gameObject.up = gameObject.t.keyboard(38);
-		gameObject.right = gameObject.t.keyboard(39);
-		gameObject.down = gameObject.t.keyboard(40);
-		gameObject.spacebar = gameObject.t.keyboard(32);
-		gameObject.zkey = gameObject.t.keyboard(90);
+	gameObject.left = gameObject.t.keyboard(37);
+	gameObject.up = gameObject.t.keyboard(38);
+	gameObject.right = gameObject.t.keyboard(39);
+	gameObject.down = gameObject.t.keyboard(40);
+	gameObject.spacebar = gameObject.t.keyboard(32);
+	gameObject.zkey = gameObject.t.keyboard(90);
 
-		// setting right key press
-		gameObject.right.press = function() {
-			gameObject.thetaBooRight = true;
-		};
-		gameObject.right.release = function() {
-			gameObject.thetaBooRight = false;
-		}; 
+	// setting right key press
+	gameObject.right.press = function() {
+		gameObject.thetaBooRight = true;
+	};
+	gameObject.right.release = function() {
+		gameObject.thetaBooRight = false;
+	}; 
 
-		// setting left key press
-		gameObject.left.press = function() {
-			gameObject.thetaBooLeft = true;
-		};
-		gameObject.left.release = function() {
-			gameObject.thetaBooLeft = false;
-		}; 
+	// setting left key press
+	gameObject.left.press = function() {
+		gameObject.thetaBooLeft = true;
+	};
+	gameObject.left.release = function() {
+		gameObject.thetaBooLeft = false;
+	}; 
 
-		//set up key press
-		gameObject.up.press = function() {
-			gameObject.rocketRotBooRight = true;
-		};
-		gameObject.up.release = function() {
-			gameObject.rocketRotBooRight = false;
-		};
+	//set up key press
+	gameObject.up.press = function() {
+		gameObject.rocketRotBooRight = true;
+	};
+	gameObject.up.release = function() {
+		gameObject.rocketRotBooRight = false;
+	};
 
-		//set down key press
-		gameObject.down.press = function() {
-			gameObject.rocketRotBooLeft = true;
-		}	
-		gameObject.down.release = function() {
-			gameObject.rocketRotBooLeft = false;
-		};
+	//set down key press
+	gameObject.down.press = function() {
+		gameObject.rocketRotBooLeft = true;
+	};	
+	gameObject.down.release = function() {
+		gameObject.rocketRotBooLeft = false;
+	};
 
-		// set spacebar
-		gameObject.spacebar.press = function() {
-			gameObject.spacebarBoo = true;
-		};
+	// set spacebar
+	gameObject.spacebar.press = function() {
+		gameObject.spacebarBoo = true;
+	};
 
-		// set zkey for power of velocity
-		gameObject.zkey.press = function() {
-			gameObject.zkeyBoo = true;
-		};
-		gameObject.zkey.release = function() {
-			gameObject.zkeyBoo = false;
-		};
+	// set zkey for power of velocity
+	gameObject.zkey.press = function() {
+		gameObject.zkeyBoo = true;
+	};
+	gameObject.zkey.release = function() {
+		gameObject.zkeyBoo = false;
+	};
 }
 
 function KeyboardReset() {
 	gameObject.xkey = gameObject.t.keyboard(88);
-
 	gameObject.xkey.press = function(){
 			gameObject.spacebarBoo = false;
-		};
-};
+	};
+}
 
 function setup() {
 	gameObject.t = new Tink(PIXI, renderer.view);
@@ -231,15 +230,29 @@ function mainMenu() {
 function levelMenu() {
 	if (gameObject.setupLevelMenu) {
 		stage.removeChildren();
+
 		var level1Button = gameObject.t.button([PIXI.loader.resources["images/1_up.png"].texture, PIXI.loader.resources["images/1_over.png"].texture, PIXI.loader.resources["images/1_down.png"].texture], canvasWidth / 10, canvasHeight / 10);
 		level1Button.anchor.x = 0.5;
 		level1Button.anchor.y = 0.5;
 		level1Button.release = function() {
+			gameObject.scoreNumber = -1;
 			gameObject.levelNumber = 1;
 			gameObject.state = levelSetup;
 		};
+
+		var level2Button = gameObject.t.button([PIXI.loader.resources["images/2_up.png"].texture, PIXI.loader.resources["images/2_over.png"].texture, PIXI.loader.resources["images/2_down.png"].texture], canvasWidth * 0.2, canvasHeight / 10);
+		level2Button.anchor.x = 0.5;
+		level2Button.anchor.y = 0.5;
+		level2Button.release = function() {
+			gameObject.scoreNumber = -1;
+			gameObject.levelNumber = 2;
+			gameObject.state = levelSetup;
+		};
+
 		gameObject.sprites["level1Button"] = level1Button;
+		gameObject.sprites["level2Button"] = level2Button;
 		stage.addChild(level1Button);
+		stage.addChild(level2Button);
 		delete gameObject.setupLevelMenu;
 
 		// Add in help button, with description of how to play
@@ -273,7 +286,9 @@ function levelSetup() {
 	powerbar.outer = outerbar;
 	outerbar.width = 10;
 
-	gameObject.scoreNumber = 0;
+	if (gameObject.scoreNumber == -1) {
+		gameObject.scoreNumber = 0;
+	}
 	var scoreCounter = new PIXI.Text("Score = "+ gameObject.scoreNumber,
 		{fontFamily: "Arial", fontSize: 20, fill: 0xFFFFFF, align: 'center'});
 	scoreCounter.x = canvasWidth/100;
@@ -354,17 +369,78 @@ function levelPosition() {
 	}
 
 	if (gameObject.spacebarBoo) {
-			KeyboardReset();
-		    gameObject.state = levelIntegrate
-		  } else {
-		  	rocket.vx = 0;
-		  	rocket.vy = 0;
-		}
-};
+		delete gameObject.left;
+		delete gameObject.right;
+		delete gameObject.up;
+		delete gameObject.down;
+		delete gameObject.spacebar;
+		delete gameObject.zkey;
+		KeyboardReset();
+		gameObject.state = levelIntegrate;
+	} else {
+	  	rocket.vx = 0;
+	  	rocket.vy = 0;
+	}
+}
 
 function levelIntegrate() {
-	//do stuff here
-};
+	if (!gameObject.spacebarBoo) {
+		gameObject.state = levelSetup;
+		gameObject.scoreNumber += 1;
+	} else {
+		var level = gameObject.levels[gameObject.levelNumber];
+		var rocket = gameObject.sprites["images/rocket.png"];
+		var planet = gameObject.sprites[level.planet.filename];
+		var blackhole = gameObject.sprites[level.blackhole.filename];
+		rocket.vx += (gameObject.initialVelocity)*Math.sin(rocket.rotation);
+		rocket.vx += gravVelocityX(planet, rocket);
+		rocket.vx += gravVelocityX(blackhole, rocket);
+		var moons = level.moons;
+		var moon;
+		for (var i = 0; i < moons.length; i++) {
+			moon = gameObject.sprites[moons[i].filename + i.toString()];
+			rocket.vx += gravVelocityX(moon, rocket);
+		} 
+	    
+		rocket.vy += -1*(gameObject.initialVelocity)*Math.cos(rocket.rotation);
+		rocket.vy += gravVelocityY(planet, rocket);
+		rocket.vy += gravVelocityY(blackhole, rocket);
+		for (var i = 0; i < moons.length; i++) {
+			moon = gameObject.sprites[moons[i].filename + i.toString()];
+			rocket.vy += gravVelocityY(moon, rocket);
+		}
+
+	    rocket.x += rocket.vx
+		rocket.y += rocket.vy
+		gameObject.initialVelocity = 0;
+
+		if (hitTestRectangle(rocket, blackhole)) {
+			gameObject.levelNumber += 1;
+			if (gameObject.levelNumber >= gameObject.levels.length) {
+				gameObject.setupLevelMenu = true;
+				gameObject.state = levelMenu;
+				gameObject.spacebarBoo = false;
+				gameObject.scoreNumber = -1;
+			} else {
+				gameObject.state = levelSetup;
+				gameObject.spacebarBoo = false;
+				gameObject.scoreNumber = -1;
+			}
+		}
+		// if (hitTestRectangle(rocket, planet)) {
+		// 	gameObject.state = levelSetup;
+		// 	gameObject.scoreNumber += 1;
+		// }
+		for (var i = 0; i < moons.length; i++) {
+			moon = gameObject.sprites[moons[i].filename + i.toString()];
+			if (hitTestRectangle(rocket, moon)) {
+				gameObject.state = levelSetup;
+				gameObject.scoreNumber += 1;
+				gameObject.spacebarBoo = false;
+			}
+		}
+	}
+}
 
 /*
 function level1() {
