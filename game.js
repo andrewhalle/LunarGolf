@@ -252,32 +252,32 @@ function levelSetup() {
 	}
 	var rocket = gameObject.sprites["images/rocket.png"];
 	var powerbar = new PIXI.DisplayObjectContainer();
-		powerbar.position.set(canvasWidth/100, canvasHeight/100);
-		gameObject.sprites["powerbar"] = powerbar;
-		stage.addChild(powerbar);
+	powerbar.position.set(canvasWidth/100, canvasHeight/100);
+	gameObject.sprites["powerbar"] = powerbar;
+	stage.addChild(powerbar);
 
-		var innerbar = new PIXI.Graphics();
-		innerbar.beginFill(0xF5F5F5);
-		innerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
-		innerbar.endFill();
-		powerbar.addChild(innerbar);
+	var innerbar = new PIXI.Graphics();
+	innerbar.beginFill(0xF5F5F5);
+	innerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
+	innerbar.endFill();
+	powerbar.addChild(innerbar);
 
-		var outerbar = new PIXI.Graphics();
-		outerbar.beginFill(0xFF3300);
-		outerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
-		outerbar.endFill();
-		powerbar.addChild(outerbar);
+	var outerbar = new PIXI.Graphics();
+	outerbar.beginFill(0xFF3300);
+	outerbar.drawRect(0,0,canvasWidth/10, canvasHeight/100);
+	outerbar.endFill();
+	powerbar.addChild(outerbar);
 
-		powerbar.outer = outerbar;
-		outerbar.width = 10;
+	powerbar.outer = outerbar;
+	outerbar.width = 10;
 
-		gameObject.scoreNumber = 0;
-		var scoreCounter = new PIXI.Text("Score = "+ gameObject.scoreNumber,
+	gameObject.scoreNumber = 0;
+	var scoreCounter = new PIXI.Text("Score = "+ gameObject.scoreNumber,
 		{fontFamily: "Arial", fontSize: 20, fill: 0xFFFFFF, align: 'center'});
-		scoreCounter.x = canvasWidth/100;
-		scoreCounter.y = 2*canvasHeight/100;
-		gameObject.sprites["scoreCounter"] = scoreCounter;
-		stage.addChild(scoreCounter);
+	scoreCounter.x = canvasWidth/100;
+	scoreCounter.y = 2*canvasHeight/100;
+	gameObject.sprites["scoreCounter"] = scoreCounter;
+	stage.addChild(scoreCounter);
 
 	//pulls out specfic level info
 	placementInfo = gameObject.levels[gameObject.levelNumber];
@@ -314,18 +314,14 @@ function levelSetup() {
 
 	};
 
+	KeyboardFunc();
 	gameObject.state = levelPosition;
 }
 
 function levelPosition() {
-	KeyboardFunc();
-
 	var rocket = gameObject.sprites["images/rocket.png"];
 	var planet = gameObject.sprites[planetinfo.filename];
-	var powerbar = new PIXI.DisplayObjectContainer();
-		gameObject.sprites["powerbar"] = powerbar;
-		var outerbar = new PIXI.Graphics();
-		powerbar.outer = outerbar;
+	var powerbar = gameObject.sprites["powerbar"];
 
 	rocket.x = planet.x + (rocket.height/2 + planet.width/2)*Math.cos(gameObject.theta);
 	rocket.y = planet.y + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
