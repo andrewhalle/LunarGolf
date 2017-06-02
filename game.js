@@ -109,7 +109,6 @@ function KeyboardFunc() {
 		gameObject.down = gameObject.t.keyboard(40);
 		gameObject.spacebar = gameObject.t.keyboard(32);
 		gameObject.zkey = gameObject.t.keyboard(90);
-		gameObject.xkey = gameObject.t.keyboard(88);
 
 		// setting right key press
 		gameObject.right.press = function() {
@@ -148,11 +147,6 @@ function KeyboardFunc() {
 			gameObject.spacebarBoo = true;
 		};
 
-		gameObject.xkey.press = function(){
-			gameObject.spacebarBoo = false;
-			gameObject.scoreNumber += 1;
-		};
-
 		// set zkey for power of velocity
 		gameObject.zkey.press = function() {
 			gameObject.zkeyBoo = true;
@@ -161,6 +155,14 @@ function KeyboardFunc() {
 			gameObject.zkeyBoo = false;
 		};
 }
+
+function KeyboardReset() {
+	gameObject.xkey = gameObject.t.keyboard(88);
+
+	gameObject.xkey.press = function(){
+			gameObject.spacebarBoo = false;
+		};
+};
 
 function setup() {
 	gameObject.t = new Tink(PIXI, renderer.view);
@@ -352,6 +354,7 @@ function levelPosition() {
 	}
 
 	if (gameObject.spacebarBoo) {
+			KeyboardReset();
 		    gameObject.state = levelIntegrate
 		  } else {
 		  	rocket.vx = 0;
