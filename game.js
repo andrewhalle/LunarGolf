@@ -271,11 +271,11 @@ function levelSetup() {
 	//loop to place all MoonsArray
 	var i = 0
 	while (i < MoonsArray.length) {
-		moon = [];
-		var moon[i] = gameObject.sprites[MoonsArray[i].filename];
-		PlaceAstroObject(moon[i], MoonsArray[i].x, MoonsArray[i].y,
+		var moon = gameObject.sprites[MoonsArray[i].filename];
+
+		PlaceAstroObject(moon, MoonsArray[i].x, MoonsArray[i].y,
 			MoonsArray[i].scale_x, MoonsArray[i].scale_y, MoonsArray[i].m);
-	i++;
+		i++;
 
 	};
 }
