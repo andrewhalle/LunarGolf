@@ -29,14 +29,16 @@ function gravVelocityY(planet1,planet2) {
 }
 
 // places both the planet and rocket onto the screen
-function PlanetAndRocket(planet,rocket,xspace,yspace) {
+function PlanetAndRocket(planet,rocket,xspace,yspace, xscale, yscale, mass) {
 			
-		planet.scale.x = .2;
-		planet.scale.y = .2;
+		planet.scale.x = xscale;
+		planet.scale.y = yscale;
 		planet.anchor.set(.5,.5);
-		planet.x = xspace;
-		planet.y = yspace;
-		planet.m = 1000
+		planet.x = xspace*canvasWidth;
+		planet.y = yspace*canvasHeight;
+		planet.m = mass;
+
+		gameObject.theta = 0;
 
 		rocket.scale.x = .2;
 		rocket.scale.y = .2;
@@ -46,7 +48,11 @@ function PlanetAndRocket(planet,rocket,xspace,yspace) {
 		rocket.y = planet.y + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
 		rocket.vx = 0;
 		rocket.vy = 0;
-		rocket.m = 1;};
+		rocket.m = 1;
+
+		stage.addChild(rocket);
+		stage.addChild(planet);
+	};
 
 // places any single object, ex: moon, blackhole, etc
 function PlaceAstroObject(AstroObject,xspace,yspace, xscale,yscale,mass) {
@@ -54,11 +60,14 @@ function PlaceAstroObject(AstroObject,xspace,yspace, xscale,yscale,mass) {
 		AstroObject.anchor.y = 0.5;
 		AstroObject.scale.x = xscale;
 		AstroObject.scale.y = yscale;
-		AstroObject.x = xspace;
-		AstroObject.y = yspace;
+		AstroObject.x = xspace*canvasWidth;
+		AstroObject.y = yspace*canvasHeight;
 		AstroObject.vx = 0;
 		AstroObject.vy = 0;
-		AstroObject.m = mass;};
+		AstroObject.m = mass;
+
+		stage.addChild(AstroObject);
+	};
 
 // command + option + [(fold)/ ](unfold)
 function hitTestRectangle(r1, r2) {
@@ -242,9 +251,36 @@ function levelMenu() {
 
 function levelSetup() {
 	stage.removeChildren();
-	//place sprites
+	// adds in rocket
+	var rocket = gameObject.sprites["images/rocket.png"]
+	//pulls out specfic level info
+	placementInfo = gameObject.levels[gameObject.levelNumber];
+	//pulls out info for each astro object
+	planetinfo = placementInfo.planet;
+	var planet = gameObject.sprites[planetinfo.filename];
+	MoonsArray = placementInfo.moons;
+	blackholeinfo = placementInfo.blackhole;
+	var blackhole = gameObject.sprites[blackholeinfo.filename]; 
+	// use function to add rocket and planet
+	PlanetAndRocket(planet, rocket, planetinfo.x, planetinfo.y, 
+		planetinfo.scale_x, planetinfo.scale_y, planetinfo.m);
+	// use function to add blackhole
+	PlaceAstroObject(blackhole, blackholeinfo.x, blackholeinfo.y,
+		blackholeinfo.scale_x, blackholeinfo.scale_y, blackholeinfo.m);
+
+	//loop to place all MoonsArray
+	var i = 0
+	while (i < MoonsArray.length) {
+		moon = [];
+		var moon[i] = gameObject.sprites[MoonsArray[i].filename];
+		PlaceAstroObject(moon[i], MoonsArray[i].x, MoonsArray[i].y,
+			MoonsArray[i].scale_x, MoonsArray[i].scale_y, MoonsArray[i].m);
+	i++;
+
+	};
 }
 
+/*
 function level1() {
 	if (gameObject.level1Setup) {
 		if (!gameObject.notFirstPlay) {
@@ -259,7 +295,7 @@ function level1() {
 		var moon = gameObject.sprites["images/moon.png"]
 		var blackhole = gameObject.sprites["images/blackhole.png"]
 
-		PlanetAndRocket(planet,rocket,canvasWidth/5,canvasHeight/2)
+		PlanetAndRocket(planet,rocket,canvasWidth/5,canvasHeight/2, xscale, yscale, mass)
 		PlaceAstroObject(moon, canvasWidth/2, canvasHeight/2, .3,.3,10000)
 		PlaceAstroObject(blackhole, canvasWidth*(4/5), canvasHeight/2, .5,.5,100000)
 
@@ -379,3 +415,4 @@ function level1() {
 		}
 	}
 }
+*/

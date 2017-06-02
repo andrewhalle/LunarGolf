@@ -16,7 +16,15 @@ var levels = [
 				scale_x: 0.3,
 				scale_y: 0.3,
 				x: 0.5,
-				y: 0.5,
+				y: 0.33,
+				m: 10000
+			},
+			{
+				filename: "images/moon.png",
+				scale_x: 0.3,
+				scale_y: 0.3,
+				x: 0.5,
+				y: 0.66,
 				m: 10000
 			}
 		],
