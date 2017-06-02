@@ -354,6 +354,17 @@ function levelPosition() {
 		      	gameObject.initialVelocity = .1;
 		    }
 	}
+
+	if (gameObject.spacebarBoo) {
+		    gameObject.state = levelIntegrate
+		  } else {
+		  	rocket.vx = 0;
+		  	rocket.vy = 0;
+		}
+};
+
+function levelIntegrate() {
+	//do stuff here
 };
 
 /*
