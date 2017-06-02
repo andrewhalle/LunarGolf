@@ -9,6 +9,7 @@ gameObject.time = 0;
 gameObject.state = splash;
 gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png"]  //replace this with function that gets all images in directory
 gameObject.levels = levels;
+gameObject.sprites = {};
 
 PIXI.loader.add(gameObject.images).load(setup);
 
@@ -164,11 +165,6 @@ function KeyboardFunc() {
 function setup() {
 	gameObject.t = new Tink(PIXI, renderer.view);
 	KeyboardFunc();
-	gameObject.sprites = {};
-	for (var i = 0; i < gameObject.images.length; i++) {
-		gameObject.sprites[gameObject.images[i]] = new PIXI.Sprite(PIXI.loader.resources[gameObject.images[i]].texture);
-	}
-
 	gameLoop();
 }
 
@@ -252,14 +248,23 @@ function levelMenu() {
 function levelSetup() {
 	stage.removeChildren();
 	// adds in rocket
+	if (!gameObject.sprites["images/rocket.png"]) {
+		gameObject.sprites["images/rocket.png"] = new PIXI.Sprite(PIXI.loader.resources["images/rocket.png"].texture);
+	}
 	var rocket = gameObject.sprites["images/rocket.png"]
 	//pulls out specfic level info
 	placementInfo = gameObject.levels[gameObject.levelNumber];
 	//pulls out info for each astro object
 	planetinfo = placementInfo.planet;
+	if (!gameObject.sprites[planetinfo.filename]) {
+		gameObject.sprites[planetinfo.filename] = new PIXI.Sprite(PIXI.loader.resources[planetinfo.filename].texture);
+	}
 	var planet = gameObject.sprites[planetinfo.filename];
 	MoonsArray = placementInfo.moons;
 	blackholeinfo = placementInfo.blackhole;
+	if (!gameObject.sprites[blackholeinfo.filename]) {
+		gameObject.sprites[blackholeinfo.filename] = new PIXI.Sprite(PIXI.loader.resources[blackholeinfo.filename].texture);
+	}
 	var blackhole = gameObject.sprites[blackholeinfo.filename]; 
 	// use function to add rocket and planet
 	PlanetAndRocket(planet, rocket, planetinfo.x, planetinfo.y, 
@@ -271,7 +276,10 @@ function levelSetup() {
 	//loop to place all MoonsArray
 	var i = 0
 	while (i < MoonsArray.length) {
-		var moon = gameObject.sprites[MoonsArray[i].filename];
+		if (!gameObject.sprites[MoonsArray[i].filename + i.toString()]) {
+			gameObject.sprites[MoonsArray[i].filename + i.toString()] = new PIXI.Sprite(PIXI.loader.resources[MoonsArray[i].filename].texture);
+		}
+		var moon = gameObject.sprites[MoonsArray[i].filename + i.toString()];
 
 		PlaceAstroObject(moon, MoonsArray[i].x, MoonsArray[i].y,
 			MoonsArray[i].scale_x, MoonsArray[i].scale_y, MoonsArray[i].m);
