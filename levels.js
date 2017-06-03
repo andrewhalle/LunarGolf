@@ -8,7 +8,7 @@ var levels = [
 			scale_y: 0.2,
 			x: 0.2, //percentage of canvasWidth
 			y: 0.5, //percentage of canvasHeight
-			m: 900
+			m: 100
 		},
 		moons: [
 			{
@@ -37,7 +37,7 @@ var levels = [
 			scale_y: 0.2,
 			x: 0.2, //percentage of canvasWidth
 			y: 0.5, //percentage of canvasHeight
-			m: 900
+			m: 100
 		},
 		moons: [
 			{
