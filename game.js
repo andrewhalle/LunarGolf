@@ -366,13 +366,16 @@ function levelIntegrate() {
 		var rocket = gameObject.sprites["images/rocket.png"];
 		var planet = gameObject.sprites[level.planet.filename];
 		var blackhole = gameObject.sprites[level.blackhole.filename];
+		blackhole.circular = true
 		rocket.vx += (gameObject.initialVelocity)*Math.sin(rocket.rotation);
 		rocket.vx += gravVelocityX(planet, rocket);
 		rocket.vx += gravVelocityX(blackhole, rocket);
+
 		var moons = level.moons;
 		var moon;
 		for (var i = 0; i < moons.length; i++) {
 			moon = gameObject.sprites[moons[i].filename + i.toString()];
+			moon.circular = true;
 			rocket.vx += gravVelocityX(moon, rocket);
 		} 
 	    
@@ -388,7 +391,7 @@ function levelIntegrate() {
 		rocket.y += rocket.vy
 		gameObject.initialVelocity = 0;
 
-		if (b.hit(rocket, blackhole)) {
+		if (b.hitTestCircleRectangle(blackhole,rocket)) {
 			gameObject.levelNumber += 1;
 			if (gameObject.levelNumber >= gameObject.levels.length) {
 				gameObject.setupLevelMenu = true;
@@ -403,7 +406,7 @@ function levelIntegrate() {
 		}
 		for (var i = 0; i < moons.length; i++) {
 			moon = gameObject.sprites[moons[i].filename + i.toString()];
-			if (b.hit(rocket, moon)) {
+			if (b.hitTestCircleRectangle(moon, rocket)) {
 				gameObject.state = levelSetup;
 				gameObject.scoreNumber += 1;
 				gameObject.spacebarBoo = false;
