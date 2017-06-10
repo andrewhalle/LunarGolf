@@ -8,7 +8,7 @@ b = new Bump(PIXI);
 var gameObject = {};
 gameObject.time = 0;
 gameObject.state = splash;
-gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png", "images/2_up.png", "images/2_over.png", "images/2_down.png"]  //replace this with function that gets all images in directory
+gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png", "images/2_up.png", "images/2_over.png", "images/2_down.png", "images/helpup.png", "images/helpdown.png", "images/helpover.png"]  //replace this with function that gets all images in directory
 gameObject.levels = levels;
 gameObject.sprites = {};
 gameObject.initialVelocity = .1;
@@ -33,7 +33,7 @@ function gravVelocityY(planet1,planet2) {
 
 // places both the planet and rocket onto the screen
 function PlanetAndRocket(planet,rocket,xspace,yspace, xscale, yscale, mass) {
-			
+
 		planet.scale.x = xscale;
 		planet.scale.y = yscale;
 		planet.anchor.set(.5,.5);
@@ -90,7 +90,7 @@ function KeyboardFunc() {
 	};
 	gameObject.right.release = function() {
 		gameObject.thetaBooRight = false;
-	}; 
+	};
 
 	// setting left key press
 	gameObject.left.press = function() {
@@ -98,7 +98,7 @@ function KeyboardFunc() {
 	};
 	gameObject.left.release = function() {
 		gameObject.thetaBooLeft = false;
-	}; 
+	};
 
 	//set up key press
 	gameObject.up.press = function() {
@@ -111,7 +111,7 @@ function KeyboardFunc() {
 	//set down key press
 	gameObject.down.press = function() {
 		gameObject.rocketRotBooLeft = true;
-	};	
+	};
 	gameObject.down.release = function() {
 		gameObject.rocketRotBooLeft = false;
 	};
@@ -240,6 +240,7 @@ function levelSetup() {
 		gameObject.sprites["images/rocket.png"] = new PIXI.Sprite(PIXI.loader.resources["images/rocket.png"].texture);
 	}
 	var rocket = gameObject.sprites["images/rocket.png"];
+// adding powerbar
 	var powerbar = new PIXI.DisplayObjectContainer();
 	powerbar.position.set(canvasWidth/100, canvasHeight/100);
 	gameObject.sprites["powerbar"] = powerbar;
@@ -259,6 +260,47 @@ function levelSetup() {
 
 	powerbar.outer = outerbar;
 	outerbar.width = 10;
+
+//adding help button
+	var helpbutton = gameObject.t.button([PIXI.loader.resources["images/helpup.png"].texture, PIXI.loader.resources["images/helpover.png"].texture, PIXI.loader.resources["images/helpdown.png"].texture],canvasWidth*(98/100), canvasHeight*(5/100));
+  helpbutton.scale.x = .5;
+  helpbutton.scale.y = .5;
+	helpbutton.anchor.x = .5;
+	helpbutton.anchor.y = .5;
+
+	var instructions = new PIXI.DisplayObjectContainer();
+	instructions.position.set(0, 0);
+	gameObject.sprites["instructions"] = instructions;
+  // instructions.anchor.x = .5;
+  // instructions.anchor.y = .5;
+	var instructionsBox = new PIXI.Graphics();
+  // instructionsBox.anchor.x = .5;
+  // instructionsBox.anchor.y = .5;
+	instructionsBox.beginFill(0xF5F5F5);
+	instructionsBox.drawRect(0,0,canvasWidth, canvasHeight);
+  instructionsBox.alpha = .5;
+	instructionsBox.endFill();
+	instructions.addChild(instructionsBox);
+	var instructionsWords = new PIXI.Text(
+		"Instructions for how to Play! \n -use up and down arrows for spining rocket \n -use right and left arrows for moving rocket about planet \n -use z to change amount of power rocket fires \n -use the spacebar to fire the rocket when ready \n -use x to reset the rocket (note you gain 1 point for this!)",
+			{fontFamily: "Arial", fontSize: 32, fill: "white"}
+			);
+	instructionsWords.anchor.x = .5;
+	instructionsWords.anchor.y = .5;
+	instructionsWords.x = canvasWidth/2;
+	instructionsWords.y = canvasHeight/2;
+	instructions.addChild(instructionsWords)
+
+	helpbutton.press = function() {
+		stage.addChild(instructions);
+	};
+	helpbutton.release = function(){
+		stage.removeChild(instructions);
+
+	};
+	gameObject.sprites["helpbutton"] = helpbutton;
+
+	stage.addChild(helpbutton);
 
 	if (gameObject.scoreNumber == -1) {
 		gameObject.scoreNumber = 0;
@@ -283,9 +325,9 @@ function levelSetup() {
 	if (!gameObject.sprites[blackholeinfo.filename]) {
 		gameObject.sprites[blackholeinfo.filename] = new PIXI.Sprite(PIXI.loader.resources[blackholeinfo.filename].texture);
 	}
-	var blackhole = gameObject.sprites[blackholeinfo.filename]; 
+	var blackhole = gameObject.sprites[blackholeinfo.filename];
 	// use function to add rocket and planet
-	PlanetAndRocket(planet, rocket, planetinfo.x, planetinfo.y, 
+	PlanetAndRocket(planet, rocket, planetinfo.x, planetinfo.y,
 		planetinfo.scale_x, planetinfo.scale_y, planetinfo.m);
 	// use function to add blackhole
 	PlaceAstroObject(blackhole, blackholeinfo.x, blackholeinfo.y,
@@ -319,7 +361,7 @@ function levelPosition() {
 
 	//set rocket rotation with up/down clicks
 	if (gameObject.rocketRotBooRight) {
-		rocket.rotation += .05; 
+		rocket.rotation += .05;
 	}
 	if (gameObject.rocketRotBooLeft) {
 	  	rocket.rotation -= .05;
@@ -378,8 +420,8 @@ function levelIntegrate() {
 			moon = gameObject.sprites[moons[i].filename + i.toString()];
 			moon.circular = true;
 			rocket.vx += gravVelocityX(moon, rocket);
-		} 
-	    
+		}
+
 		rocket.vy += -1*(gameObject.initialVelocity)*Math.cos(rocket.rotation);
 		rocket.vy += gravVelocityY(planet, rocket);
 		rocket.vy += gravVelocityY(blackhole, rocket);
@@ -413,5 +455,5 @@ function levelIntegrate() {
 				gameObject.spacebarBoo = false;
 			}
 		}
-	} 
+	}
 }
