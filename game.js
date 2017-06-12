@@ -8,10 +8,6 @@ b = new Bump(PIXI);
 var gameObject = {};
 gameObject.time = 0;
 gameObject.state = splash;
-<<<<<<< HEAD
-gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png", "images/2_up.png", "images/2_over.png", "images/2_down.png", "images/helpup.png", "images/helpdown.png", "images/helpover.png", "images/rotmoon.png"]  //replace this with function that gets all images in directory
-gameObject.levels = levels;
-=======
 gameObject.images = [
 	"images/blackhole.png",
 	"images/moon.png",
@@ -63,7 +59,6 @@ gameObject.images = [
 	"images/helpover.png"
 ];
 gameObject.courses = courses;
->>>>>>> origin/master
 gameObject.sprites = {};
 gameObject.initialVelocity = .1;
 
