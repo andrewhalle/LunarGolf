@@ -8,8 +8,8 @@ b = new Bump(PIXI);
 var gameObject = {};
 gameObject.time = 0;
 gameObject.state = splash;
-gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png", "images/2_up.png", "images/2_over.png", "images/2_down.png", "images/helpup.png", "images/helpdown.png", "images/helpover.png"]  //replace this with function that gets all images in directory
-gameObject.levels = levels;
+gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png", "images/2_up.png", "images/2_over.png", "images/2_down.png", "images/helpup.png", "images/helpdown.png", "images/helpover.png", "images/course1up.png", "images/course1down.png", "images/course1over.png"]  //replace this with function that gets all images in directory
+gameObject.courses = courses;
 gameObject.sprites = {};
 gameObject.initialVelocity = .1;
 
@@ -190,14 +190,57 @@ function mainMenu() {
 		var playButton = gameObject.t.button([PIXI.loader.resources["images/up.png"].texture, PIXI.loader.resources["images/over.png"].texture, PIXI.loader.resources["images/down.png"].texture], canvasWidth / 2, 0.6 * canvasHeight);
 		playButton.anchor.x = 0.5;
 		playButton.anchor.y = 0.5;
-		playButton.tap = function() {
-			gameObject.state = levelMenu;
-			gameObject.setupLevelMenu = true;
+		playButton.release = function() {
+			gameObject.state = courseMenu;
+			gameObject.setupCourseMenu = true;
 		};
 		gameObject.sprites["playButton"] = playButton;
 		stage.addChild(playButton)
 
 		delete gameObject.setupMainMenu;
+	}
+}
+
+function courseMenu() {
+	if (gameObject.setupCourseMenu) {
+		stage.removeChildren();
+		gameObject.t.buttons = [];
+
+		var course1 = gameObject.t.button([PIXI.loader.resources["images/course1up.png"].texture, PIXI.loader.resources["images/course1over.png"].texture, PIXI.loader.resources["images/course1down.png"].texture], canvasWidth * 0.2, canvasHeight / 2);
+		course1.anchor.x = 0.5;
+		course1.anchor.y = 0.5;
+		course1.release = function() {
+			gameObject.courseNumber = 1;
+			gameObject.state = levelMenu;
+			gameObject.setupLevelMenu = true;
+		}
+
+		var course2 = gameObject.t.button([PIXI.loader.resources["images/course1up.png"].texture, PIXI.loader.resources["images/course1over.png"].texture, PIXI.loader.resources["images/course1down.png"].texture], canvasWidth * 0.4, canvasHeight / 2);
+		course2.anchor.x = 0.5;
+		course2.anchor.y = 0.5;
+		course2.release = function() {
+			gameObject.courseNumber = 2;
+			gameObject.state = levelMenu;
+			gameObject.setupLevelMenu = true;
+		}
+
+		var course3 = gameObject.t.button([PIXI.loader.resources["images/course1up.png"].texture, PIXI.loader.resources["images/course1over.png"].texture, PIXI.loader.resources["images/course1down.png"].texture], canvasWidth * 0.6, canvasHeight / 2);
+		course3.anchor.x = 0.5;
+		course3.anchor.y = 0.5;
+		course3.release = function() {
+			gameObject.courseNumber = 3;
+			gameObject.state = levelMenu;
+			gameObject.setupLevelMenu = true;
+		}
+
+		gameObject.sprites["course1"] = course1;
+		gameObject.sprites["course2"] = course2;
+		gameObject.sprites["course3"] = course3;
+		stage.addChild(course1);
+		stage.addChild(course2);
+		stage.addChild(course3);
+
+		delete gameObject.setupCourseMenu;
 	}
 }
 
@@ -315,7 +358,7 @@ function levelSetup() {
 	stage.addChild(scoreCounter);
 
 	//pulls out specfic level info
-	placementInfo = gameObject.levels[gameObject.levelNumber];
+	placementInfo = gameObject.courses[gameObject.courseNumber].levels[gameObject.levelNumber];
 	//pulls out info for each astro object
 	planetinfo = placementInfo.planet;
 	if (!gameObject.sprites[planetinfo.filename]) {
@@ -406,7 +449,7 @@ function levelIntegrate() {
 		gameObject.state = levelSetup;
 		gameObject.scoreNumber += 1;
 	} else {
-		var level = gameObject.levels[gameObject.levelNumber];
+		var level = gameObject.courses[gameObject.courseNumber].levels[gameObject.levelNumber];
 		var rocket = gameObject.sprites["images/rocket.png"];
 		rocket.circular = true
 		var planet = gameObject.sprites[level.planet.filename];
@@ -438,7 +481,7 @@ function levelIntegrate() {
 
 		if (b.hitTestCircle(blackhole,rocket)) {
 			gameObject.levelNumber += 1;
-			if (gameObject.levelNumber >= gameObject.levels.length) {
+			if (gameObject.levelNumber >= gameObject.courses[gameObject.courseNumber].levels.length) {
 				gameObject.setupLevelMenu = true;
 				gameObject.state = levelMenu;
 				gameObject.spacebarBoo = false;
