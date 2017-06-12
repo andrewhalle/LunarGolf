@@ -577,7 +577,7 @@ var Tink = (function () {
       if (this.pointers.length === 0) {
         this.makePointer(this.element, this.scale);
       }
-
+      var shouldBePointer = false;
       //Loop through all the button-like sprites that were created
       //using the `makeInteractive` method
       this.buttons.forEach(function (o) {
@@ -632,13 +632,8 @@ var Tink = (function () {
               }
 
               //Change the pointer icon to a hand
-              if (pointer.visible) pointer.cursor = "pointer";
-            } else {
-              //Turn the pointer to an ordinary arrow icon if the
-              //pointer isn't touching a sprite
-              if (pointer.visible) pointer.cursor = "auto";
+              shouldBePointer = true;
             }
-
             //Perform the correct interactive action
 
             //a. Run the `press` method if the sprite state is "down" and
@@ -689,6 +684,11 @@ var Tink = (function () {
           });
         }
       });
+      if (shouldBePointer) {
+        this.pointers[0].cursor = "pointer";
+      } else {
+        this.pointers[0].cursor = "auto";
+      }
     }
 
     //A function that creates a sprite with 3 frames that

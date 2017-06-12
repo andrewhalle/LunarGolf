@@ -204,6 +204,7 @@ function mainMenu() {
 function levelMenu() {
 	if (gameObject.setupLevelMenu) {
 		stage.removeChildren();
+		gameObject.t.buttons = [];
 
 		var level1Button = gameObject.t.button([PIXI.loader.resources["images/1_up.png"].texture, PIXI.loader.resources["images/1_over.png"].texture, PIXI.loader.resources["images/1_down.png"].texture], canvasWidth / 10, canvasHeight / 10);
 		level1Button.anchor.x = 0.5;
@@ -235,6 +236,7 @@ function levelMenu() {
 
 function levelSetup() {
 	stage.removeChildren();
+	gameObject.t.buttons = [];
 	// adds in rocket
 	if (!gameObject.sprites["images/rocket.png"]) {
 		gameObject.sprites["images/rocket.png"] = new PIXI.Sprite(PIXI.loader.resources["images/rocket.png"].texture);
@@ -263,22 +265,22 @@ function levelSetup() {
 
 //adding help button
 	var helpbutton = gameObject.t.button([PIXI.loader.resources["images/helpup.png"].texture, PIXI.loader.resources["images/helpover.png"].texture, PIXI.loader.resources["images/helpdown.png"].texture],canvasWidth*(98/100), canvasHeight*(5/100));
-  helpbutton.scale.x = .5;
-  helpbutton.scale.y = .5;
+  	helpbutton.scale.x = .5;
+  	helpbutton.scale.y = .5;
 	helpbutton.anchor.x = .5;
 	helpbutton.anchor.y = .5;
 
 	var instructions = new PIXI.DisplayObjectContainer();
 	instructions.position.set(0, 0);
 	gameObject.sprites["instructions"] = instructions;
-  // instructions.anchor.x = .5;
-  // instructions.anchor.y = .5;
+  	// instructions.anchor.x = .5;
+  	// instructions.anchor.y = .5;
 	var instructionsBox = new PIXI.Graphics();
-  // instructionsBox.anchor.x = .5;
-  // instructionsBox.anchor.y = .5;
+	// instructionsBox.anchor.x = .5;
+  	// instructionsBox.anchor.y = .5;
 	instructionsBox.beginFill(0xF5F5F5);
 	instructionsBox.drawRect(0,0,canvasWidth, canvasHeight);
-  instructionsBox.alpha = .5;
+  	instructionsBox.alpha = .5;
 	instructionsBox.endFill();
 	instructions.addChild(instructionsBox);
 	var instructionsWords = new PIXI.Text(
