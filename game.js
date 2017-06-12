@@ -8,8 +8,62 @@ b = new Bump(PIXI);
 var gameObject = {};
 gameObject.time = 0;
 gameObject.state = splash;
+<<<<<<< HEAD
 gameObject.images = ["images/blackhole.png", "images/moon.png", "images/planet.png", "images/rocket.png", "images/up.png", "images/over.png", "images/down.png", "images/1_up.png", "images/1_over.png", "images/1_down.png", "images/2_up.png", "images/2_over.png", "images/2_down.png", "images/helpup.png", "images/helpdown.png", "images/helpover.png", "images/rotmoon.png"]  //replace this with function that gets all images in directory
 gameObject.levels = levels;
+=======
+gameObject.images = [
+	"images/blackhole.png",
+	"images/moon.png",
+	"images/planet.png",
+	"images/rocket.png",
+
+	"images/up.png",
+	"images/over.png",
+	"images/down.png",
+
+	"images/1_up.png",
+	"images/1_over.png",                         //replace this with function that gets all images in directory
+	"images/1_down.png",
+
+	"images/2_up.png",
+	"images/2_over.png",
+	"images/2_down.png",
+
+	"images/3_up.png",
+	"images/3_over.png",
+	"images/3_down.png",
+
+	"images/4_up.png",
+	"images/4_over.png",
+	"images/4_down.png",
+
+	"images/5_up.png",
+	"images/5_over.png",
+	"images/5_down.png",
+
+	"images/6_up.png",
+	"images/6_over.png",
+	"images/6_down.png",
+
+	"images/7_up.png",
+	"images/7_over.png",
+	"images/7_down.png",
+
+	"images/8_up.png",
+	"images/8_over.png",
+	"images/8_down.png",
+
+	"images/9_up.png",
+	"images/9_over.png",
+	"images/9_down.png",
+
+	"images/helpup.png",
+	"images/helpdown.png",
+	"images/helpover.png"
+];
+gameObject.courses = courses;
+>>>>>>> origin/master
 gameObject.sprites = {};
 gameObject.initialVelocity = .1;
 
@@ -190,9 +244,9 @@ function mainMenu() {
 		var playButton = gameObject.t.button([PIXI.loader.resources["images/up.png"].texture, PIXI.loader.resources["images/over.png"].texture, PIXI.loader.resources["images/down.png"].texture], canvasWidth / 2, 0.6 * canvasHeight);
 		playButton.anchor.x = 0.5;
 		playButton.anchor.y = 0.5;
-		playButton.tap = function() {
-			gameObject.state = levelMenu;
-			gameObject.setupLevelMenu = true;
+		playButton.release = function() {
+			gameObject.state = courseMenu;
+			gameObject.setupCourseMenu = true;
 		};
 		gameObject.sprites["playButton"] = playButton;
 		stage.addChild(playButton)
@@ -201,12 +255,83 @@ function mainMenu() {
 	}
 }
 
+function courseMenu() {
+	if (gameObject.setupCourseMenu) {
+		stage.removeChildren();
+		gameObject.t.buttons = [];
+
+		var courseMenuTitle = new PIXI.Text(
+			"Courses",
+			{fontFamily: "Arial", fontSize: 32, fill: "white"}
+		);
+		courseMenuTitle.anchor.x = 0.5;
+		courseMenuTitle.anchor.x = 0.5;
+		courseMenuTitle.x = canvasWidth / 2;
+		courseMenuTitle.y = canvasHeight / 10;
+
+		var course1 = gameObject.t.button([PIXI.loader.resources["images/1_up.png"].texture, PIXI.loader.resources["images/1_over.png"].texture, PIXI.loader.resources["images/1_down.png"].texture], canvasWidth * 0.2, canvasHeight / 2);
+		course1.anchor.x = 0.5;
+		course1.anchor.y = 0.5;
+		course1.scale.x = 2;
+		course1.scale.y = 2;
+		course1.release = function() {
+			gameObject.courseNumber = 1;
+			gameObject.state = levelMenu;
+			gameObject.setupLevelMenu = true;
+		}
+
+		var course2 = gameObject.t.button([PIXI.loader.resources["images/2_up.png"].texture, PIXI.loader.resources["images/2_over.png"].texture, PIXI.loader.resources["images/2_down.png"].texture], canvasWidth * 0.5, canvasHeight / 2);
+		course2.anchor.x = 0.5;
+		course2.anchor.y = 0.5;
+		course2.scale.x = 2;
+		course2.scale.y = 2;
+		course2.release = function() {
+			gameObject.courseNumber = 2;
+			gameObject.state = levelMenu;
+			gameObject.setupLevelMenu = true;
+		}
+
+		var course3 = gameObject.t.button([PIXI.loader.resources["images/3_up.png"].texture, PIXI.loader.resources["images/3_over.png"].texture, PIXI.loader.resources["images/3_down.png"].texture], canvasWidth * 0.8, canvasHeight / 2);
+		course3.anchor.x = 0.5;
+		course3.anchor.y = 0.5;
+		course3.scale.x = 2;
+		course3.scale.y = 2;
+		course3.release = function() {
+			gameObject.courseNumber = 3;
+			gameObject.state = levelMenu;
+			gameObject.setupLevelMenu = true;
+		}
+
+		gameObject.sprites["courseMenuTitle"] = courseMenuTitle;
+		gameObject.sprites["course1"] = course1;
+		gameObject.sprites["course2"] = course2;
+		gameObject.sprites["course3"] = course3;
+
+		stage.addChild(courseMenuTitle);
+		stage.addChild(course1);
+		stage.addChild(course2);
+		stage.addChild(course3);
+
+		delete gameObject.setupCourseMenu;
+	}
+}
+
 function levelMenu() {
 	if (gameObject.setupLevelMenu) {
 		stage.removeChildren();
 		gameObject.t.buttons = [];
 
-		var level1Button = gameObject.t.button([PIXI.loader.resources["images/1_up.png"].texture, PIXI.loader.resources["images/1_over.png"].texture, PIXI.loader.resources["images/1_down.png"].texture], canvasWidth / 10, canvasHeight / 10);
+
+		var levelMenuTitle = new PIXI.Text(
+			"Levels",
+			{fontFamily: "Arial", fontSize: 32, fill: "white"}
+		);
+		levelMenuTitle.anchor.x = 0.5;
+		levelMenuTitle.anchor.x = 0.5;
+		levelMenuTitle.x = canvasWidth / 2;
+		levelMenuTitle.y = canvasHeight / 10;
+
+		var level1Button = gameObject.t.button([PIXI.loader.resources["images/1_up.png"].texture, PIXI.loader.resources["images/1_over.png"].texture, PIXI.loader.resources["images/1_down.png"].texture], canvasWidth * 0.35, canvasHeight * 0.4);
 		level1Button.anchor.x = 0.5;
 		level1Button.anchor.y = 0.5;
 		level1Button.release = function() {
@@ -215,7 +340,7 @@ function levelMenu() {
 			gameObject.state = levelSetup;
 		};
 
-		var level2Button = gameObject.t.button([PIXI.loader.resources["images/2_up.png"].texture, PIXI.loader.resources["images/2_over.png"].texture, PIXI.loader.resources["images/2_down.png"].texture], canvasWidth * 0.2, canvasHeight / 10);
+		var level2Button = gameObject.t.button([PIXI.loader.resources["images/2_up.png"].texture, PIXI.loader.resources["images/2_over.png"].texture, PIXI.loader.resources["images/2_down.png"].texture], canvasWidth * 0.45, canvasHeight * 0.4);
 		level2Button.anchor.x = 0.5;
 		level2Button.anchor.y = 0.5;
 		level2Button.release = function() {
@@ -224,10 +349,91 @@ function levelMenu() {
 			gameObject.state = levelSetup;
 		};
 
+		var level3Button = gameObject.t.button([PIXI.loader.resources["images/3_up.png"].texture, PIXI.loader.resources["images/3_over.png"].texture, PIXI.loader.resources["images/3_down.png"].texture], canvasWidth * 0.55, canvasHeight * 0.4);
+		level3Button.anchor.x = 0.5;
+		level3Button.anchor.y = 0.5;
+		level3Button.release = function() {
+			gameObject.scoreNumber = -1;
+			gameObject.levelNumber = 3;
+			gameObject.state = levelSetup;
+		};
+
+		var level4Button = gameObject.t.button([PIXI.loader.resources["images/4_up.png"].texture, PIXI.loader.resources["images/4_over.png"].texture, PIXI.loader.resources["images/4_down.png"].texture], canvasWidth * 0.65, canvasHeight * 0.4);
+		level4Button.anchor.x = 0.5;
+		level4Button.anchor.y = 0.5;
+		level4Button.release = function() {
+			gameObject.scoreNumber = -1;
+			gameObject.levelNumber = 4;
+			gameObject.state = levelSetup;
+		};
+
+		var level5Button = gameObject.t.button([PIXI.loader.resources["images/5_up.png"].texture, PIXI.loader.resources["images/5_over.png"].texture, PIXI.loader.resources["images/5_down.png"].texture], canvasWidth * 0.3, canvasHeight * 0.6);
+		level5Button.anchor.x = 0.5;
+		level5Button.anchor.y = 0.5;
+		level5Button.release = function() {
+			gameObject.scoreNumber = -1;
+			gameObject.levelNumber = 5;
+			gameObject.state = levelSetup;
+		};
+
+		var level6Button = gameObject.t.button([PIXI.loader.resources["images/6_up.png"].texture, PIXI.loader.resources["images/6_over.png"].texture, PIXI.loader.resources["images/6_down.png"].texture], canvasWidth * 0.4, canvasHeight * 0.6);
+		level6Button.anchor.x = 0.5;
+		level6Button.anchor.y = 0.5;
+		level6Button.release = function() {
+			gameObject.scoreNumber = -1;
+			gameObject.levelNumber = 6;
+			gameObject.state = levelSetup;
+		};
+
+		var level7Button = gameObject.t.button([PIXI.loader.resources["images/7_up.png"].texture, PIXI.loader.resources["images/7_over.png"].texture, PIXI.loader.resources["images/7_down.png"].texture], canvasWidth * 0.5, canvasHeight * 0.6);
+		level7Button.anchor.x = 0.5;
+		level7Button.anchor.y = 0.5;
+		level7Button.release = function() {
+			gameObject.scoreNumber = -1;
+			gameObject.levelNumber = 7;
+			gameObject.state = levelSetup;
+		};
+
+		var level8Button = gameObject.t.button([PIXI.loader.resources["images/8_up.png"].texture, PIXI.loader.resources["images/8_over.png"].texture, PIXI.loader.resources["images/8_down.png"].texture], canvasWidth * 0.6, canvasHeight * 0.6);
+		level8Button.anchor.x = 0.5;
+		level8Button.anchor.y = 0.5;
+		level8Button.release = function() {
+			gameObject.scoreNumber = -1;
+			gameObject.levelNumber = 8;
+			gameObject.state = levelSetup;
+		};
+
+		var level9Button = gameObject.t.button([PIXI.loader.resources["images/9_up.png"].texture, PIXI.loader.resources["images/9_over.png"].texture, PIXI.loader.resources["images/9_down.png"].texture], canvasWidth * 0.7, canvasHeight * 0.6);
+		level9Button.anchor.x = 0.5;
+		level9Button.anchor.y = 0.5;
+		level9Button.release = function() {
+			gameObject.scoreNumber = -1;
+			gameObject.levelNumber = 9;
+			gameObject.state = levelSetup;
+		};
+
+		gameObject.sprites["levelMenuTitle"] = levelMenuTitle;
 		gameObject.sprites["level1Button"] = level1Button;
 		gameObject.sprites["level2Button"] = level2Button;
+		gameObject.sprites["level3Button"] = level1Button;
+		gameObject.sprites["level4Button"] = level2Button;
+		gameObject.sprites["level5Button"] = level1Button;
+		gameObject.sprites["level6Button"] = level2Button;
+		gameObject.sprites["level7Button"] = level1Button;
+		gameObject.sprites["level8Button"] = level2Button;
+		gameObject.sprites["level9Button"] = level1Button;
+
+		stage.addChild(levelMenuTitle);
 		stage.addChild(level1Button);
 		stage.addChild(level2Button);
+		stage.addChild(level3Button);
+		stage.addChild(level4Button);
+		stage.addChild(level5Button);
+		stage.addChild(level6Button);
+		stage.addChild(level7Button);
+		stage.addChild(level8Button);
+		stage.addChild(level9Button);
+
 		delete gameObject.setupLevelMenu;
 
 		// Add in help button, with description of how to play
@@ -315,7 +521,7 @@ function levelSetup() {
 	stage.addChild(scoreCounter);
 
 	//pulls out specfic level info
-	placementInfo = gameObject.levels[gameObject.levelNumber];
+	placementInfo = gameObject.courses[gameObject.courseNumber].levels[gameObject.levelNumber];
 	//pulls out info for each astro object
 	planetinfo = placementInfo.planet;
 	if (!gameObject.sprites[planetinfo.filename]) {
@@ -406,7 +612,7 @@ function levelIntegrate() {
 		gameObject.state = levelSetup;
 		gameObject.scoreNumber += 1;
 	} else {
-		var level = gameObject.levels[gameObject.levelNumber];
+		var level = gameObject.courses[gameObject.courseNumber].levels[gameObject.levelNumber];
 		var rocket = gameObject.sprites["images/rocket.png"];
 		rocket.circular = true
 		var planet = gameObject.sprites[level.planet.filename];
@@ -438,7 +644,7 @@ function levelIntegrate() {
 
 		if (b.hitTestCircle(blackhole,rocket)) {
 			gameObject.levelNumber += 1;
-			if (gameObject.levelNumber >= gameObject.levels.length) {
+			if (gameObject.levelNumber >= gameObject.courses[gameObject.courseNumber].levels.length) {
 				gameObject.setupLevelMenu = true;
 				gameObject.state = levelMenu;
 				gameObject.spacebarBoo = false;
