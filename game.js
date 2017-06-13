@@ -13,6 +13,7 @@ gameObject.images = [
 	"images/moon.png",
 	"images/planet.png",
 	"images/rocket.png",
+  "images/rotmoon.png",
 
 	"images/up.png",
 	"images/over.png",
@@ -96,8 +97,8 @@ function PlanetAndRocket(planet,rocket,xspace,yspace, xscale, yscale, mass) {
 		rocket.scale.y = .2;
 		rocket.anchor.set(.5,.5);
 		rocket.rotation = 1.5707;
-		rocket.x = planet.x + (rocket.height/2 + planet.width/2)*Math.cos(gameObject.theta);
-		rocket.y = planet.y + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
+		rocket.x = planet.x + (rocket.height/1.75 + planet.width/2)*Math.cos(gameObject.theta);
+		rocket.y = planet.y + (rocket.height/1.75 + planet.width/2)*Math.sin(gameObject.theta);
 		rocket.vx = 0;
 		rocket.vy = 0;
 		rocket.m = 1;
@@ -105,6 +106,20 @@ function PlanetAndRocket(planet,rocket,xspace,yspace, xscale, yscale, mass) {
 		stage.addChild(rocket);
 		stage.addChild(planet);
 	};
+
+function PlaceRotMoon(rotmoon, xcenter, ycenter, xlength, ylength, xscale, yscale, angle, angvelocity, mass) {
+  moontheta = angle;
+  moonvelocity = angvelocity;
+  rotmoon.anchor.x = 0.5;
+  rotmoon.anchor.y = 0.5;
+  rotmoon.scale.x = xscale;
+  rotmoon.scale.y = yscale;
+  rotmoon.x = (xcenter)*canvasWidth + (xlength)*canvasWidth*Math.cos(moontheta);
+  rotmoon.y = (ycenter)*canvasHeight + (ylength)*canvasWidth*Math.sin(moontheta);
+  rotmoon.vx = 0;
+  rotmoon.vy = 0;
+  rotmoon.m = mass;
+};
 
 // places any single object, ex: moon, blackhole, etc
 function PlaceAstroObject(AstroObject,xspace,yspace, xscale,yscale,mass) {
@@ -524,6 +539,7 @@ function levelSetup() {
 	}
 	var planet = gameObject.sprites[planetinfo.filename];
 	MoonsArray = placementInfo.moons;
+  RotMoonsArray = placementInfo.rotmoons;
 	blackholeinfo = placementInfo.blackhole;
 	if (!gameObject.sprites[blackholeinfo.filename]) {
 		gameObject.sprites[blackholeinfo.filename] = new PIXI.Sprite(PIXI.loader.resources[blackholeinfo.filename].texture);
@@ -537,7 +553,7 @@ function levelSetup() {
 		blackholeinfo.scale_x, blackholeinfo.scale_y, blackholeinfo.m);
 
 	//loop to place all MoonsArray
-	var i = 0
+	var i = 0;
 	while (i < MoonsArray.length) {
 		if (!gameObject.sprites[MoonsArray[i].filename + i.toString()]) {
 			gameObject.sprites[MoonsArray[i].filename + i.toString()] = new PIXI.Sprite(PIXI.loader.resources[MoonsArray[i].filename].texture);
@@ -549,6 +565,21 @@ function levelSetup() {
 		i++;
 
 	};
+  //loop to place all rotational Moons
+  var i = 0;
+  while (i < RotMoonsArray.length) {
+    if (!gameObject.sprites[RotMoonsArray[i].filename + i.toString()]) {
+			gameObject.sprites[RotMoonsArray[i].filename + i.toString()] = new PIXI.Sprite(PIXI.loader.resources[RotMoonsArray[i].filename].texture);
+		}
+		var rotmoon = gameObject.sprites[RotMoonsArray[i].filename + i.toString()];
+
+		PlaceRotMoon(rotmoon, RotMoonsArray[i].xcenter, RotMoonsArray[i].ycenter, RotMoonsArray[i].xlength,
+      RotMoonsArray[i].ylength ,RotMoonsArray[i].scale_x, RotMoonsArray[i].scale_y,
+      RotMoonsArray[i].angle ,RotMoonsArray[i].angvelocity ,RotMoonsArray[i].m);
+
+    RotMoonsArray[i].angle += (.01)*RotMoonsArray[i].angvelocity
+		i++;
+  }
 
 	KeyboardFunc();
 	gameObject.state = levelPosition;
@@ -559,8 +590,21 @@ function levelPosition() {
 	var planet = gameObject.sprites[planetinfo.filename];
 	var powerbar = gameObject.sprites["powerbar"];
 
-	rocket.x = planet.x + (rocket.height/2 + planet.width/2)*Math.cos(gameObject.theta);
-	rocket.y = planet.y + (rocket.height/2 + planet.width/2)*Math.sin(gameObject.theta);
+	rocket.x = planet.x + (rocket.height/1.75 + planet.width/2)*Math.cos(gameObject.theta);
+	rocket.y = planet.y + (rocket.height/1.75 + planet.width/2)*Math.sin(gameObject.theta);
+
+  var i = 0;
+  while (i < RotMoonsArray.length) {
+    if (!gameObject.sprites[RotMoonsArray[i].filename + i.toString()]) {
+			gameObject.sprites[RotMoonsArray[i].filename + i.toString()] = new PIXI.Sprite(PIXI.loader.resources[RotMoonsArray[i].filename].texture);
+		}
+		var rotmoon = gameObject.sprites[RotMoonsArray[i].filename + i.toString()];
+
+    RotMoonsArray[i].angle += (.01)*RotMoonsArray[i].angvelocity;
+    rotmoon.x = (RotMoonsArray[i].xcenter)*canvasWidth + (RotMoonsArray[i].xlength)*canvasWidth*Math.cos(RotMoonsArray[i].angle);
+    rotmoon.y = (RotMoonsArray[i].ycenter)*canvasHeight + (RotMoonsArray[i].ylength)*canvasWidth*Math.sin(RotMoonsArray[i].angle);
+		i++;
+  }
 
 	//set rocket rotation with up/down clicks
 	if (gameObject.rocketRotBooRight) {
@@ -611,8 +655,23 @@ function levelIntegrate() {
 		var rocket = gameObject.sprites["images/rocket.png"];
 		rocket.circular = true
 		var planet = gameObject.sprites[level.planet.filename];
+    planet.circular = true
 		var blackhole = gameObject.sprites[level.blackhole.filename];
 		blackhole.circular = true
+
+    var i = 0;
+    while (i < RotMoonsArray.length) {
+      if (!gameObject.sprites[RotMoonsArray[i].filename + i.toString()]) {
+  			gameObject.sprites[RotMoonsArray[i].filename + i.toString()] = new PIXI.Sprite(PIXI.loader.resources[RotMoonsArray[i].filename].texture);
+  		}
+  		var rotmoon = gameObject.sprites[RotMoonsArray[i].filename + i.toString()];
+
+      RotMoonsArray[i].angle += (.01)*RotMoonsArray[i].angvelocity;
+      rotmoon.x = (RotMoonsArray[i].xcenter)*canvasWidth + (RotMoonsArray[i].xlength)*canvasWidth*Math.cos(RotMoonsArray[i].angle);
+      rotmoon.y = (RotMoonsArray[i].ycenter)*canvasHeight + (RotMoonsArray[i].ylength)*canvasWidth*Math.sin(RotMoonsArray[i].angle);
+  		i++;
+    }
+
 		rocket.vx += (gameObject.initialVelocity)*Math.sin(rocket.rotation);
 		rocket.vx += gravVelocityX(planet, rocket);
 		rocket.vx += gravVelocityX(blackhole, rocket);
@@ -633,7 +692,7 @@ function levelIntegrate() {
 			rocket.vy += gravVelocityY(moon, rocket);
 		}
 
-	    rocket.x += rocket.vx
+	  rocket.x += rocket.vx
 		rocket.y += rocket.vy
 		gameObject.initialVelocity = 0;
 
@@ -658,5 +717,10 @@ function levelIntegrate() {
 				gameObject.spacebarBoo = false;
 			}
 		}
+    if (b.hitTestCircle(planet,rocket)) {
+      gameObject.state = levelSetup;
+      gameObject.scoreNumber += 1;
+      gameObject.spacebarBoo = false;
+    }
 	}
 }
