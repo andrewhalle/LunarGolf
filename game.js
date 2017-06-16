@@ -119,6 +119,8 @@ function PlaceRotMoon(rotmoon, xcenter, ycenter, xlength, ylength, xscale, yscal
   rotmoon.vx = 0;
   rotmoon.vy = 0;
   rotmoon.m = mass;
+
+	stage.addChild(rotmoon)
 };
 
 // places any single object, ex: moon, blackhole, etc
@@ -684,12 +686,25 @@ function levelIntegrate() {
 			rocket.vx += gravVelocityX(moon, rocket);
 		}
 
+		var rotmoons = level.rotmoons;
+		var rotmoon;
+		for (var i = 0; i < rotmoons.length; i++) {
+			rotmoon = gameObject.sprites[rotmoons[i].filename + i.toString()];
+			rotmoon.circular = true;
+			rocket.vx += gravVelocityX(rotmoon, rocket);
+		}
+
 		rocket.vy += -1*(gameObject.initialVelocity)*Math.cos(rocket.rotation);
 		rocket.vy += gravVelocityY(planet, rocket);
 		rocket.vy += gravVelocityY(blackhole, rocket);
 		for (var i = 0; i < moons.length; i++) {
 			moon = gameObject.sprites[moons[i].filename + i.toString()];
 			rocket.vy += gravVelocityY(moon, rocket);
+		}
+		for (var i = 0; i < rotmoons.length; i++) {
+			rotmoon = gameObject.sprites[rotmoons[i].filename + i.toString()];
+			rotmoon.circular = true;
+			rocket.vy += gravVelocityY(rotmoon, rocket);
 		}
 
 	  rocket.x += rocket.vx
@@ -717,6 +732,16 @@ function levelIntegrate() {
 				gameObject.spacebarBoo = false;
 			}
 		}
+
+		for (var i = 0; i < rotmoons.length; i++) {
+			rotmoon = gameObject.sprites[rotmoons[i].filename + i.toString()];
+			if (b.hitTestCircle(rotmoon, rocket)) {
+				gameObject.state = levelSetup;
+				gameObject.scoreNumber += 1;
+				gameObject.spacebarBoo = false;
+			}
+		}
+
     if (b.hitTestCircle(planet,rocket)) {
       gameObject.state = levelSetup;
       gameObject.scoreNumber += 1;

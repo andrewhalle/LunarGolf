@@ -26,7 +26,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -77,7 +77,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -120,7 +120,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -179,7 +179,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -238,7 +238,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -297,7 +297,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -372,7 +372,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -463,7 +463,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -562,7 +562,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 5,
@@ -610,7 +610,7 @@ var courses = [
 				],
 				rotmoons: [
 					{
-						filename: "images/moon.png",
+						filename: "images/rotmoon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
 						xcenter: 0.5,
@@ -628,6 +628,116 @@ var courses = [
 					scale_y: 0.5,
 					x: 0.8,
 					y: 0.5,
+					m: 1000
+				}
+			},
+			// level 2
+			{
+				planet: {
+					filename: "images/planet.png",
+					scale_x: 0.2,
+					scale_y: 0.2,
+					x: 0.2, //percentage of canvasWidth
+					y: 0.5, //percentage of canvasHeight
+					m: 100
+				},
+				moons: [
+					{
+						filename: "images/moon.png",
+						scale_x: 0.2,
+						scale_y: 0.2,
+						x: 1.5,
+						y: 1.5,
+						m: 1
+					}
+				],
+				rotmoons: [
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.2,
+						scale_y: 0.2,
+						xcenter: 0.5,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 0,
+						angvelocity: 1,
+						m: 500
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.2,
+						scale_y: 0.2,
+						xcenter: 0.5,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 3.14159,
+						angvelocity: 1,
+						m: 500
+					}
+				],
+				blackhole: {
+					filename: "images/blackhole.png",
+					scale_x: 0.5,
+					scale_y: 0.5,
+					x: 0.8,
+					y: 0.5,
+					m: 1000
+				}
+			},
+			// level 3
+			{
+				planet: {
+					filename: "images/planet.png",
+					scale_x: 0.2,
+					scale_y: 0.2,
+					x: 0.1, //percentage of canvasWidth
+					y: 0.8, //percentage of canvasHeight
+					m: 100
+				},
+				moons: [
+					{
+						filename: "images/moon.png",
+						scale_x: 0.2,
+						scale_y: 0.2,
+						x: 0.5,
+						y: 0.5,
+						m: 1
+					}
+				],
+				rotmoons: [
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.2,
+						scale_y: 0.2,
+						xcenter: 0.5,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 0,
+						angvelocity: .5,
+						m: 500
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.2,
+						scale_y: 0.2,
+						xcenter: 0.5,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 3.14159,
+						angvelocity: .5,
+						m: 500
+					}
+				],
+				blackhole: {
+					filename: "images/blackhole.png",
+					scale_x: 0.5,
+					scale_y: 0.5,
+					x: 0.8,
+					y: 0.2,
 					m: 1000
 				}
 			},
