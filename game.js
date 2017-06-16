@@ -519,8 +519,29 @@ function levelSetup() {
 
 	};
 	gameObject.sprites["helpbutton"] = helpbutton;
-
 	stage.addChild(helpbutton);
+
+	// cheat button stuff
+	gameObject.cheatButtonPressed = false;
+	gameObject.cheatVectorMap = -1;
+	var cheatButton = gameObject.t.button([PIXI.loader.resources["images/helpup.png"].texture, PIXI.loader.resources["images/helpover.png"].texture, PIXI.loader.resources["images/helpdown.png"].texture], canvasWidth * 0.98, canvasHeight * 0.95);
+	cheatButton.scale.x = 0.5;
+	cheatButton.scale.y = 0.5;
+	cheatButton.anchor.x = 0.5;
+	cheatButton.anchor.y = 0.5;
+	cheatButton.press = function() {
+		gameObject.cheatButtonPressed = true;
+	};
+	cheatButton.release = function() {
+		stage.removeChild(gameObject.cheatVectorMap);
+		gameObject.cheatVectorMap = -1;
+		gameObject.cheatButtonPressed = false;
+	};
+
+	gameObject.sprites["cheatButton"] = cheatButton;
+	stage.addChild(cheatButton);
+	// end cheat button stuff
+
 
 	if (gameObject.scoreNumber == -1) {
 		gameObject.scoreNumber = 0;
@@ -645,6 +666,61 @@ function levelPosition() {
 	} else {
 	  	rocket.vx = 0;
 	  	rocket.vy = 0;
+	}
+
+	if (gameObject.cheatButtonPressed) {
+		if (gameObject.cheatVectorMap == -1) {
+			gameObject.cheatVectorMap = new PIXI.Container();
+			var x = 0;
+			while (x < canvasWidth) {
+				var y = 0;
+				while (y < canvasHeight) {
+					var point = {x: x, y: y};
+					var vx = 0;
+					var vy = 0;
+					//x velocity
+					vx += gravVelocityX(planet, point);
+					vx += gravVelocityX(gameObject.sprites["images/blackhole.png"], point);
+					//y velocity
+					vy += gravVelocityY(planet, point);
+					vy += gravVelocityY(gameObject.sprites["images/blackhole.png"], point);
+					var line = new PIXI.Graphics();
+					line.lineStyle(2, 0xFFFFFF, 1);
+					line.moveTo(x, y);
+					line.lineTo(x + (vx * 1000), y + (vy * 1000));
+					gameObject.cheatVectorMap.addChild(line);
+					y += canvasHeight / 10;
+				}
+				x += canvasWidth / 10;
+			}
+			stage.addChild(gameObject.cheatVectorMap);
+		} else {
+			stage.removeChild(gameObject.cheatVectorMap);
+			gameObject.cheatVectorMap = new PIXI.Container();
+			var x = 0;
+			while (x < canvasWidth) {
+				var y = 0;
+				while (y < canvasHeight) {
+					var point = {x: x, y: y};
+					var vx = 0;
+					var vy = 0;
+					//x velocity
+					vx += gravVelocityX(planet, point);
+					vx += gravVelocityX(gameObject.sprites["images/blackhole.png"], point);
+					//y velocity
+					vy += gravVelocityY(planet, point);
+					vy += gravVelocityY(gameObject.sprites["images/blackhole.png"], point);
+					var line = new PIXI.Graphics();
+					line.lineStyle(2, 0xFFFFFF, 1);
+					line.moveTo(x, y);
+					line.lineTo(x + (vx * 1000), y + (vy * 1000));
+					gameObject.cheatVectorMap.addChild(line);
+					y += canvasHeight / 10;
+				}
+				x += canvasWidth / 10;
+			}
+			stage.addChild(gameObject.cheatVectorMap);
+		}
 	}
 }
 
