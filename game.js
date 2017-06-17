@@ -681,9 +681,21 @@ function levelPosition() {
 					//x velocity
 					vx += gravVelocityX(planet, point);
 					vx += gravVelocityX(gameObject.sprites["images/blackhole.png"], point);
+					for (var i = 0; i < MoonsArray.length; i++) {
+						vx += gravVelocityX(gameObject.sprites[MoonsArray[i].filename + i.toString()], point);
+					}
+					for (var i = 0; i < RotMoonsArray.length; i++) {
+						vx += gravVelocityX(gameObject.sprites[RotMoonsArray[i].filename + i.toString()], point);
+					}
 					//y velocity
 					vy += gravVelocityY(planet, point);
 					vy += gravVelocityY(gameObject.sprites["images/blackhole.png"], point);
+					for (var i = 0; i < MoonsArray.length; i++) {
+						vy += gravVelocityY(gameObject.sprites[MoonsArray[i].filename + i.toString()], point);
+					}
+					for (var i = 0; i < RotMoonsArray.length; i++) {
+						vy += gravVelocityY(gameObject.sprites[RotMoonsArray[i].filename + i.toString()], point);
+					}
 					var line = new PIXI.Graphics();
 					line.lineStyle(2, 0xFFFFFF, 1);
 					line.moveTo(x, y);
@@ -707,9 +719,21 @@ function levelPosition() {
 					//x velocity
 					vx += gravVelocityX(planet, point);
 					vx += gravVelocityX(gameObject.sprites["images/blackhole.png"], point);
+					for (var i = 0; i < MoonsArray.length; i++) {
+						vx += gravVelocityX(gameObject.sprites[MoonsArray[i].filename + i.toString()], point);
+					}
+					for (var i = 0; i < RotMoonsArray.length; i++) {
+						vx += gravVelocityX(gameObject.sprites[RotMoonsArray[i].filename + i.toString()], point);
+					}
 					//y velocity
 					vy += gravVelocityY(planet, point);
 					vy += gravVelocityY(gameObject.sprites["images/blackhole.png"], point);
+					for (var i = 0; i < MoonsArray.length; i++) {
+						vy += gravVelocityY(gameObject.sprites[MoonsArray[i].filename + i.toString()], point);
+					}
+					for (var i = 0; i < RotMoonsArray.length; i++) {
+						vy += gravVelocityY(gameObject.sprites[RotMoonsArray[i].filename + i.toString()], point);
+					}
 					var line = new PIXI.Graphics();
 					line.lineStyle(2, 0xFFFFFF, 1);
 					line.moveTo(x, y);
