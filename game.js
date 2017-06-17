@@ -61,7 +61,7 @@ gameObject.images = [
 ];
 gameObject.courses = courses;
 gameObject.sprites = {};
-gameObject.initialVelocity = .1;
+gameObject.initialVelocity = 0.1;
 
 PIXI.loader.add(gameObject.images).load(setup);
 
@@ -74,11 +74,11 @@ function distance(s1, s2) {
 
 //velocity from gravity from planet1 on planet 2
 function gravVelocityX(planet1,planet2) {
-  return 1*((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet1.x - planet2.x) / distance(planet1, planet2))
+  return 1*((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet1.x - planet2.x) / distance(planet1, planet2));
 }
 
 function gravVelocityY(planet1,planet2) {
-  return 1*((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet1.y - planet2.y) / distance(planet1, planet2))
+  return 1*((planet1.m) / Math.pow(distance(planet1, planet2), 2)) * ((planet1.y - planet2.y) / distance(planet1, planet2));
 }
 
 // places both the planet and rocket onto the screen
@@ -86,16 +86,16 @@ function PlanetAndRocket(planet,rocket,xspace,yspace, xscale, yscale, mass) {
 
 		planet.scale.x = xscale;
 		planet.scale.y = yscale;
-		planet.anchor.set(.5,.5);
+		planet.anchor.set(0.5, 0.5);
 		planet.x = xspace*canvasWidth;
 		planet.y = yspace*canvasHeight;
 		planet.m = mass;
 
 		gameObject.theta = 0;
 
-		rocket.scale.x = .2;
-		rocket.scale.y = .2;
-		rocket.anchor.set(.5,.5);
+		rocket.scale.x = 0.2;
+		rocket.scale.y = 0.2;
+		rocket.anchor.set(0.5, 0.5);
 		rocket.rotation = 1.5707;
 		rocket.x = planet.x + (rocket.height/1.75 + planet.width/2)*Math.cos(gameObject.theta);
 		rocket.y = planet.y + (rocket.height/1.75 + planet.width/2)*Math.sin(gameObject.theta);
@@ -105,7 +105,7 @@ function PlanetAndRocket(planet,rocket,xspace,yspace, xscale, yscale, mass) {
 
 		stage.addChild(rocket);
 		stage.addChild(planet);
-	};
+}
 
 function PlaceRotMoon(rotmoon, xcenter, ycenter, xlength, ylength, xscale, yscale, angle, angvelocity, mass) {
   moontheta = angle;
@@ -120,8 +120,8 @@ function PlaceRotMoon(rotmoon, xcenter, ycenter, xlength, ylength, xscale, yscal
   rotmoon.vy = 0;
   rotmoon.m = mass;
 
-	stage.addChild(rotmoon)
-};
+	stage.addChild(rotmoon);
+}
 
 // places any single object, ex: moon, blackhole, etc
 function PlaceAstroObject(AstroObject,xspace,yspace, xscale,yscale,mass) {
@@ -136,7 +136,7 @@ function PlaceAstroObject(AstroObject,xspace,yspace, xscale,yscale,mass) {
 		AstroObject.m = mass;
 
 		stage.addChild(AstroObject);
-	};
+}
 
 // command + option + [(fold)/ ](unfold)
 
@@ -217,7 +217,7 @@ function gameLoop() {
 }
 
 function splash() {
-	if (gameObject.time == 0) {
+	if (gameObject.time === 0) {
 		var splashText = new PIXI.Text(
 			"Two Nerds Games",
 			{fontFamily: "Arial", fontSize: 32, fill: "white"}
@@ -226,14 +226,14 @@ function splash() {
 		splashText.anchor.x = 0.5;
 		splashText.anchor.y = 0.5;
 		splashText.position.set(canvasWidth / 2, canvasHeight / 2);
-		gameObject.sprites["splashText"] = splashText;
+		gameObject.sprites.splashText = splashText;
 		stage.addChild(splashText);
 	} else if (gameObject.time < 1) {
-		gameObject.sprites["splashText"].alpha += 1 / 60;
+		gameObject.sprites.splashText.alpha += 1 / 60;
 	} else if (gameObject.time < 4) {
-		gameObject.sprites["splashText"].alpha = 1;
+		gameObject.sprites.splashText.alpha = 1;
 	} else if (gameObject.time < 5) {
-		gameObject.sprites["splashText"].alpha -= 1 / 60;
+		gameObject.sprites.splashText.alpha -= 1 / 60;
 	} else {
 		gameObject.setupMainMenu = true;
 		gameObject.state = mainMenu;
@@ -250,7 +250,7 @@ function mainMenu() {
 		title.anchor.x = 0.5;
 		title.anchor.y = 0.5;
 		title.position.set(canvasWidth / 2, canvasHeight / 4);
-		gameObject.sprites["title"] = title;
+		gameObject.sprites.title = title;
 		stage.addChild(title);
 
 		var playButton = gameObject.t.button([PIXI.loader.resources["images/up.png"].texture, PIXI.loader.resources["images/over.png"].texture, PIXI.loader.resources["images/down.png"].texture], canvasWidth / 2, 0.6 * canvasHeight);
@@ -260,8 +260,8 @@ function mainMenu() {
 			gameObject.state = courseMenu;
 			gameObject.setupCourseMenu = true;
 		};
-		gameObject.sprites["playButton"] = playButton;
-		stage.addChild(playButton)
+		gameObject.sprites.playButton = playButton;
+		stage.addChild(playButton);
 
 		delete gameObject.setupMainMenu;
 	}
@@ -290,7 +290,7 @@ function courseMenu() {
 			gameObject.courseNumber = 1;
 			gameObject.state = levelMenu;
 			gameObject.setupLevelMenu = true;
-		}
+		};
 
 		var course2 = gameObject.t.button([PIXI.loader.resources["images/2_up.png"].texture, PIXI.loader.resources["images/2_over.png"].texture, PIXI.loader.resources["images/2_down.png"].texture], canvasWidth * 0.5, canvasHeight / 2);
 		course2.anchor.x = 0.5;
@@ -301,7 +301,7 @@ function courseMenu() {
 			gameObject.courseNumber = 2;
 			gameObject.state = levelMenu;
 			gameObject.setupLevelMenu = true;
-		}
+		};
 
 		var course3 = gameObject.t.button([PIXI.loader.resources["images/3_up.png"].texture, PIXI.loader.resources["images/3_over.png"].texture, PIXI.loader.resources["images/3_down.png"].texture], canvasWidth * 0.8, canvasHeight / 2);
 		course3.anchor.x = 0.5;
@@ -312,12 +312,12 @@ function courseMenu() {
 			gameObject.courseNumber = 3;
 			gameObject.state = levelMenu;
 			gameObject.setupLevelMenu = true;
-		}
+		};
 
-		gameObject.sprites["courseMenuTitle"] = courseMenuTitle;
-		gameObject.sprites["course1"] = course1;
-		gameObject.sprites["course2"] = course2;
-		gameObject.sprites["course3"] = course3;
+		gameObject.sprites.courseMenuTitle = courseMenuTitle;
+		gameObject.sprites.course1 = course1;
+		gameObject.sprites.course2 = course2;
+		gameObject.sprites.course3 = course3;
 
 		stage.addChild(courseMenuTitle);
 		stage.addChild(course1);
@@ -424,16 +424,16 @@ function levelMenu() {
 			gameObject.state = levelSetup;
 		};
 
-		gameObject.sprites["levelMenuTitle"] = levelMenuTitle;
-		gameObject.sprites["level1Button"] = level1Button;
-		gameObject.sprites["level2Button"] = level2Button;
-		gameObject.sprites["level3Button"] = level1Button;
-		gameObject.sprites["level4Button"] = level2Button;
-		gameObject.sprites["level5Button"] = level1Button;
-		gameObject.sprites["level6Button"] = level2Button;
-		gameObject.sprites["level7Button"] = level1Button;
-		gameObject.sprites["level8Button"] = level2Button;
-		gameObject.sprites["level9Button"] = level1Button;
+		gameObject.sprites.levelMenuTitle = levelMenuTitle;
+		gameObject.sprites.level1Button = level1Button;
+		gameObject.sprites.level2Button = level2Button;
+		gameObject.sprites.level3Button = level1Button;
+		gameObject.sprites.level4Button = level2Button;
+		gameObject.sprites.level5Button = level1Button;
+		gameObject.sprites.level6Button = level2Button;
+		gameObject.sprites.level7Button = level1Button;
+		gameObject.sprites.level8Button = level2Button;
+		gameObject.sprites.level9Button = level1Button;
 
 		stage.addChild(levelMenuTitle);
 		stage.addChild(level1Button);
@@ -463,7 +463,7 @@ function levelSetup() {
 // adding powerbar
 	var powerbar = new PIXI.DisplayObjectContainer();
 	powerbar.position.set(canvasWidth/100, canvasHeight/100);
-	gameObject.sprites["powerbar"] = powerbar;
+	gameObject.sprites.powerbar = powerbar;
 	stage.addChild(powerbar);
 
 	var innerbar = new PIXI.Graphics();
@@ -483,14 +483,14 @@ function levelSetup() {
 
 //adding help button
 	var helpbutton = gameObject.t.button([PIXI.loader.resources["images/helpup.png"].texture, PIXI.loader.resources["images/helpover.png"].texture, PIXI.loader.resources["images/helpdown.png"].texture],canvasWidth*(98/100), canvasHeight*(5/100));
-  	helpbutton.scale.x = .5;
-  	helpbutton.scale.y = .5;
-	helpbutton.anchor.x = .5;
-	helpbutton.anchor.y = .5;
+  	helpbutton.scale.x = 0.5;
+  	helpbutton.scale.y = 0.5;
+	helpbutton.anchor.x = 0.5;
+	helpbutton.anchor.y = 0.5;
 
 	var instructions = new PIXI.DisplayObjectContainer();
 	instructions.position.set(0, 0);
-	gameObject.sprites["instructions"] = instructions;
+	gameObject.sprites.instructions = instructions;
   	// instructions.anchor.x = .5;
   	// instructions.anchor.y = .5;
 	var instructionsBox = new PIXI.Graphics();
@@ -498,18 +498,18 @@ function levelSetup() {
   	// instructionsBox.anchor.y = .5;
 	instructionsBox.beginFill(0xF5F5F5);
 	instructionsBox.drawRect(0,0,canvasWidth, canvasHeight);
-  	instructionsBox.alpha = .5;
+  	instructionsBox.alpha = 0.5;
 	instructionsBox.endFill();
 	instructions.addChild(instructionsBox);
 	var instructionsWords = new PIXI.Text(
 		"Instructions for how to Play! \n -use up and down arrows for spining rocket \n -use right and left arrows for moving rocket about planet \n -use z to change amount of power rocket fires \n -use the spacebar to fire the rocket when ready \n -use x to reset the rocket (note you gain 1 point for this!)",
 			{fontFamily: "Arial", fontSize: 32, fill: "white"}
 			);
-	instructionsWords.anchor.x = .5;
-	instructionsWords.anchor.y = .5;
-	instructionsWords.x = canvasWidth/2;
-	instructionsWords.y = canvasHeight/2;
-	instructions.addChild(instructionsWords)
+	instructionsWords.anchor.x = 0.5;
+	instructionsWords.anchor.y = 0.5;
+	instructionsWords.x = canvasWidth / 2;
+	instructionsWords.y = canvasHeight / 2;
+	instructions.addChild(instructionsWords);
 
 	helpbutton.press = function() {
 		stage.addChild(instructions);
@@ -518,7 +518,7 @@ function levelSetup() {
 		stage.removeChild(instructions);
 
 	};
-	gameObject.sprites["helpbutton"] = helpbutton;
+	gameObject.sprites.helpButton = helpbutton;
 	stage.addChild(helpbutton);
 
 	// cheat button stuff
@@ -538,7 +538,7 @@ function levelSetup() {
 		gameObject.cheatButtonPressed = false;
 	};
 
-	gameObject.sprites["cheatButton"] = cheatButton;
+	gameObject.sprites.cheatButton = cheatButton;
 	stage.addChild(cheatButton);
 	// end cheat button stuff
 
@@ -550,7 +550,7 @@ function levelSetup() {
 		{fontFamily: "Arial", fontSize: 20, fill: 0xFFFFFF, align: 'center'});
 	scoreCounter.x = canvasWidth/100;
 	scoreCounter.y = 2*canvasHeight/100;
-	gameObject.sprites["scoreCounter"] = scoreCounter;
+	gameObject.sprites.scoreCounter = scoreCounter;
 	stage.addChild(scoreCounter);
 
 	//pulls out specfic level info
@@ -587,22 +587,22 @@ function levelSetup() {
 			MoonsArray[i].scale_x, MoonsArray[i].scale_y, MoonsArray[i].m);
 		i++;
 
-	};
-  //loop to place all rotational Moons
-  var i = 0;
-  while (i < RotMoonsArray.length) {
-    if (!gameObject.sprites[RotMoonsArray[i].filename + i.toString()]) {
+	}
+  	//loop to place all rotational Moons
+  	i = 0;
+  	while (i < RotMoonsArray.length) {
+    	if (!gameObject.sprites[RotMoonsArray[i].filename + i.toString()]) {
 			gameObject.sprites[RotMoonsArray[i].filename + i.toString()] = new PIXI.Sprite(PIXI.loader.resources[RotMoonsArray[i].filename].texture);
 		}
 		var rotmoon = gameObject.sprites[RotMoonsArray[i].filename + i.toString()];
 
 		PlaceRotMoon(rotmoon, RotMoonsArray[i].xcenter, RotMoonsArray[i].ycenter, RotMoonsArray[i].xlength,
-      RotMoonsArray[i].ylength ,RotMoonsArray[i].scale_x, RotMoonsArray[i].scale_y,
-      RotMoonsArray[i].angle ,RotMoonsArray[i].angvelocity ,RotMoonsArray[i].m);
+      	RotMoonsArray[i].ylength ,RotMoonsArray[i].scale_x, RotMoonsArray[i].scale_y,
+      	RotMoonsArray[i].angle ,RotMoonsArray[i].angvelocity ,RotMoonsArray[i].m);
 
-    RotMoonsArray[i].angle += (.01)*RotMoonsArray[i].angvelocity
+    	RotMoonsArray[i].angle += (0.01)*RotMoonsArray[i].angvelocity;
 		i++;
-  }
+  	}
 
 	KeyboardFunc();
 	gameObject.state = levelPosition;
@@ -611,7 +611,7 @@ function levelSetup() {
 function levelPosition() {
 	var rocket = gameObject.sprites["images/rocket.png"];
 	var planet = gameObject.sprites[planetinfo.filename];
-	var powerbar = gameObject.sprites["powerbar"];
+	var powerbar = gameObject.sprites.powerbar;
 
 	rocket.x = planet.x + (rocket.height/1.75 + planet.width/2)*Math.cos(gameObject.theta);
 	rocket.y = planet.y + (rocket.height/1.75 + planet.width/2)*Math.sin(gameObject.theta);
@@ -623,7 +623,7 @@ function levelPosition() {
 		}
 		var rotmoon = gameObject.sprites[RotMoonsArray[i].filename + i.toString()];
 
-    RotMoonsArray[i].angle += (.01)*RotMoonsArray[i].angvelocity;
+    RotMoonsArray[i].angle += (0.01)*RotMoonsArray[i].angvelocity;
     rotmoon.x = (RotMoonsArray[i].xcenter)*canvasWidth + (RotMoonsArray[i].xlength)*canvasWidth*Math.cos(RotMoonsArray[i].angle);
     rotmoon.y = (RotMoonsArray[i].ycenter)*canvasHeight + (RotMoonsArray[i].ylength)*canvasWidth*Math.sin(RotMoonsArray[i].angle);
 		i++;
@@ -631,26 +631,26 @@ function levelPosition() {
 
 	//set rocket rotation with up/down clicks
 	if (gameObject.rocketRotBooRight) {
-		rocket.rotation += .05;
+		rocket.rotation += 0.05;
 	}
 	if (gameObject.rocketRotBooLeft) {
-	  	rocket.rotation -= .05;
+	  	rocket.rotation -= 0.05;
 	}
 	//set rocket planet placement with right/left
 	if (gameObject.thetaBooRight) {
-	    gameObject.theta += .05;
-	    rocket.rotation += .05;
+	    gameObject.theta += 0.05;
+	    rocket.rotation += 0.05;
 	}
 	if (gameObject.thetaBooLeft) {
-	    gameObject.theta -= .05;
-	    rocket.rotation -= .05;
+	    gameObject.theta -= 0.05;
+	    rocket.rotation -= 0.05;
 	}
 	if (gameObject.zkeyBoo){
 		    powerbar.outer.width += 1;
-		    gameObject.initialVelocity += .1;
+		    gameObject.initialVelocity += 0.1;
 		    if (powerbar.outer.width > canvasWidth/10) {
 		    	powerbar.outer.width = 0;
-		      	gameObject.initialVelocity = .1;
+		      	gameObject.initialVelocity = 0.1;
 		    }
 	}
 
@@ -669,34 +669,35 @@ function levelPosition() {
 	}
 
 	if (gameObject.cheatButtonPressed) {
+		var x, y, point, vx, vy, line;
 		if (gameObject.cheatVectorMap == -1) {
 			gameObject.cheatVectorMap = new PIXI.Container();
-			var x = 0;
+			x = 0;
 			while (x < canvasWidth) {
-				var y = 0;
+				y = 0;
 				while (y < canvasHeight) {
-					var point = {x: x, y: y};
-					var vx = 0;
-					var vy = 0;
+					point = {x: x, y: y};
+					vx = 0;
+					vy = 0;
 					//x velocity
 					vx += gravVelocityX(planet, point);
 					vx += gravVelocityX(gameObject.sprites["images/blackhole.png"], point);
-					for (var i = 0; i < MoonsArray.length; i++) {
+					for (i = 0; i < MoonsArray.length; i++) {
 						vx += gravVelocityX(gameObject.sprites[MoonsArray[i].filename + i.toString()], point);
 					}
-					for (var i = 0; i < RotMoonsArray.length; i++) {
+					for (i = 0; i < RotMoonsArray.length; i++) {
 						vx += gravVelocityX(gameObject.sprites[RotMoonsArray[i].filename + i.toString()], point);
 					}
 					//y velocity
 					vy += gravVelocityY(planet, point);
 					vy += gravVelocityY(gameObject.sprites["images/blackhole.png"], point);
-					for (var i = 0; i < MoonsArray.length; i++) {
+					for (i = 0; i < MoonsArray.length; i++) {
 						vy += gravVelocityY(gameObject.sprites[MoonsArray[i].filename + i.toString()], point);
 					}
-					for (var i = 0; i < RotMoonsArray.length; i++) {
+					for (i = 0; i < RotMoonsArray.length; i++) {
 						vy += gravVelocityY(gameObject.sprites[RotMoonsArray[i].filename + i.toString()], point);
 					}
-					var line = new PIXI.Graphics();
+					line = new PIXI.Graphics();
 					line.lineStyle(2, 0xFFFFFF, 1);
 					line.moveTo(x, y);
 					line.lineTo(x + (vx * 1000), y + (vy * 1000));
@@ -709,32 +710,32 @@ function levelPosition() {
 		} else {
 			stage.removeChild(gameObject.cheatVectorMap);
 			gameObject.cheatVectorMap = new PIXI.Container();
-			var x = 0;
+			x = 0;
 			while (x < canvasWidth) {
-				var y = 0;
+				y = 0;
 				while (y < canvasHeight) {
-					var point = {x: x, y: y};
-					var vx = 0;
-					var vy = 0;
+					point = {x: x, y: y};
+					vx = 0;
+					vy = 0;
 					//x velocity
 					vx += gravVelocityX(planet, point);
 					vx += gravVelocityX(gameObject.sprites["images/blackhole.png"], point);
-					for (var i = 0; i < MoonsArray.length; i++) {
+					for (i = 0; i < MoonsArray.length; i++) {
 						vx += gravVelocityX(gameObject.sprites[MoonsArray[i].filename + i.toString()], point);
 					}
-					for (var i = 0; i < RotMoonsArray.length; i++) {
+					for (i = 0; i < RotMoonsArray.length; i++) {
 						vx += gravVelocityX(gameObject.sprites[RotMoonsArray[i].filename + i.toString()], point);
 					}
 					//y velocity
 					vy += gravVelocityY(planet, point);
 					vy += gravVelocityY(gameObject.sprites["images/blackhole.png"], point);
-					for (var i = 0; i < MoonsArray.length; i++) {
+					for (i = 0; i < MoonsArray.length; i++) {
 						vy += gravVelocityY(gameObject.sprites[MoonsArray[i].filename + i.toString()], point);
 					}
-					for (var i = 0; i < RotMoonsArray.length; i++) {
+					for (i = 0; i < RotMoonsArray.length; i++) {
 						vy += gravVelocityY(gameObject.sprites[RotMoonsArray[i].filename + i.toString()], point);
 					}
-					var line = new PIXI.Graphics();
+					line = new PIXI.Graphics();
 					line.lineStyle(2, 0xFFFFFF, 1);
 					line.moveTo(x, y);
 					line.lineTo(x + (vx * 1000), y + (vy * 1000));
@@ -755,24 +756,25 @@ function levelIntegrate() {
 	} else {
 		var level = gameObject.courses[gameObject.courseNumber].levels[gameObject.levelNumber];
 		var rocket = gameObject.sprites["images/rocket.png"];
-		rocket.circular = true
+		rocket.circular = true;
 		var planet = gameObject.sprites[level.planet.filename];
-    planet.circular = true
+    	planet.circular = true;
 		var blackhole = gameObject.sprites[level.blackhole.filename];
-		blackhole.circular = true
+		blackhole.circular = true;
 
-    var i = 0;
-    while (i < RotMoonsArray.length) {
-      if (!gameObject.sprites[RotMoonsArray[i].filename + i.toString()]) {
-  			gameObject.sprites[RotMoonsArray[i].filename + i.toString()] = new PIXI.Sprite(PIXI.loader.resources[RotMoonsArray[i].filename].texture);
-  		}
-  		var rotmoon = gameObject.sprites[RotMoonsArray[i].filename + i.toString()];
+    	var i = 0;
+    	var rotmoon;
+    	while (i < RotMoonsArray.length) {
+      		if (!gameObject.sprites[RotMoonsArray[i].filename + i.toString()]) {
+  				gameObject.sprites[RotMoonsArray[i].filename + i.toString()] = new PIXI.Sprite(PIXI.loader.resources[RotMoonsArray[i].filename].texture);
+  			}
+  			rotmoon = gameObject.sprites[RotMoonsArray[i].filename + i.toString()];
 
-      RotMoonsArray[i].angle += (.01)*RotMoonsArray[i].angvelocity;
-      rotmoon.x = (RotMoonsArray[i].xcenter)*canvasWidth + (RotMoonsArray[i].xlength)*canvasWidth*Math.cos(RotMoonsArray[i].angle);
-      rotmoon.y = (RotMoonsArray[i].ycenter)*canvasHeight + (RotMoonsArray[i].ylength)*canvasWidth*Math.sin(RotMoonsArray[i].angle);
-  		i++;
-    }
+      		RotMoonsArray[i].angle += (0.01)*RotMoonsArray[i].angvelocity;
+      		rotmoon.x = (RotMoonsArray[i].xcenter)*canvasWidth + (RotMoonsArray[i].xlength)*canvasWidth*Math.cos(RotMoonsArray[i].angle);
+      		rotmoon.y = (RotMoonsArray[i].ycenter)*canvasHeight + (RotMoonsArray[i].ylength)*canvasWidth*Math.sin(RotMoonsArray[i].angle);
+  			i++;
+    	}
 
 		rocket.vx += (gameObject.initialVelocity)*Math.sin(rocket.rotation);
 		rocket.vx += gravVelocityX(planet, rocket);
@@ -780,15 +782,14 @@ function levelIntegrate() {
 
 		var moons = level.moons;
 		var moon;
-		for (var i = 0; i < moons.length; i++) {
+		for (i = 0; i < moons.length; i++) {
 			moon = gameObject.sprites[moons[i].filename + i.toString()];
 			moon.circular = true;
 			rocket.vx += gravVelocityX(moon, rocket);
 		}
 
 		var rotmoons = level.rotmoons;
-		var rotmoon;
-		for (var i = 0; i < rotmoons.length; i++) {
+		for (i = 0; i < rotmoons.length; i++) {
 			rotmoon = gameObject.sprites[rotmoons[i].filename + i.toString()];
 			rotmoon.circular = true;
 			rocket.vx += gravVelocityX(rotmoon, rocket);
@@ -797,18 +798,18 @@ function levelIntegrate() {
 		rocket.vy += -1*(gameObject.initialVelocity)*Math.cos(rocket.rotation);
 		rocket.vy += gravVelocityY(planet, rocket);
 		rocket.vy += gravVelocityY(blackhole, rocket);
-		for (var i = 0; i < moons.length; i++) {
+		for (i = 0; i < moons.length; i++) {
 			moon = gameObject.sprites[moons[i].filename + i.toString()];
 			rocket.vy += gravVelocityY(moon, rocket);
 		}
-		for (var i = 0; i < rotmoons.length; i++) {
+		for (i = 0; i < rotmoons.length; i++) {
 			rotmoon = gameObject.sprites[rotmoons[i].filename + i.toString()];
 			rotmoon.circular = true;
 			rocket.vy += gravVelocityY(rotmoon, rocket);
 		}
 
-	  rocket.x += rocket.vx
-		rocket.y += rocket.vy
+	  	rocket.x += rocket.vx;
+		rocket.y += rocket.vy;
 		gameObject.initialVelocity = 0;
 
 		if (b.hitTestCircle(blackhole,rocket)) {
@@ -824,7 +825,7 @@ function levelIntegrate() {
 				gameObject.scoreNumber = -1;
 			}
 		}
-		for (var i = 0; i < moons.length; i++) {
+		for (i = 0; i < moons.length; i++) {
 			moon = gameObject.sprites[moons[i].filename + i.toString()];
 			if (b.hitTestCircle(moon, rocket)) {
 				gameObject.state = levelSetup;
@@ -833,7 +834,7 @@ function levelIntegrate() {
 			}
 		}
 
-		for (var i = 0; i < rotmoons.length; i++) {
+		for (i = 0; i < rotmoons.length; i++) {
 			rotmoon = gameObject.sprites[rotmoons[i].filename + i.toString()];
 			if (b.hitTestCircle(rotmoon, rocket)) {
 				gameObject.state = levelSetup;
