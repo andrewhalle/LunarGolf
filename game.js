@@ -57,7 +57,11 @@ gameObject.images = [
 
 	"images/helpup.png",
 	"images/helpdown.png",
-	"images/helpover.png"
+	"images/helpover.png",
+
+	"images/hintup.png",
+	"images/hintdown.png",
+	"images/hintover.png"
 ];
 gameObject.courses = courses;
 gameObject.sprites = {};
@@ -524,7 +528,7 @@ function levelSetup() {
 	// cheat button stuff
 	gameObject.cheatButtonPressed = false;
 	gameObject.cheatVectorMap = -1;
-	var cheatButton = gameObject.t.button([PIXI.loader.resources["images/helpup.png"].texture, PIXI.loader.resources["images/helpover.png"].texture, PIXI.loader.resources["images/helpdown.png"].texture], canvasWidth * 0.98, canvasHeight * 0.95);
+	var cheatButton = gameObject.t.button([PIXI.loader.resources["images/hintup.png"].texture, PIXI.loader.resources["images/hintover.png"].texture, PIXI.loader.resources["images/hintdown.png"].texture], canvasWidth * 0.97, canvasHeight * 0.95);
 	cheatButton.scale.x = 0.5;
 	cheatButton.scale.y = 0.5;
 	cheatButton.anchor.x = 0.5;
