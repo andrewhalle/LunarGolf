@@ -55,6 +55,10 @@ gameObject.images = [
 	"images/9_over.png",
 	"images/9_down.png",
 
+	"images/back_up.png",
+	"images/back_over.png",
+	"images/back_down.png",
+
 	"images/helpup.png",
 	"images/helpdown.png",
 	"images/helpover.png",
@@ -428,6 +432,17 @@ function levelMenu() {
 			gameObject.state = levelSetup;
 		};
 
+		var BackButton = gameObject.t.button([PIXI.loader.resources["images/back_up.png"].texture, PIXI.loader.resources["images/back_over.png"].texture, PIXI.loader.resources["images/back_down.png"].texture], canvasWidth * 0.05, canvasHeight * 0.95);
+		BackButton.anchor.x = 0.5;
+		BackButton.anchor.y = 0.5;
+		BackButton.release = function() {
+			stage.removeChildren();
+			gameObject.t.buttons = [];
+			delete gameObject.setupLevelMenu;
+			gameObject.state = courseMenu;
+			gameObject.setupCourseMenu = true;
+		};
+
 		gameObject.sprites.levelMenuTitle = levelMenuTitle;
 		gameObject.sprites.level1Button = level1Button;
 		gameObject.sprites.level2Button = level2Button;
@@ -438,6 +453,7 @@ function levelMenu() {
 		gameObject.sprites.level7Button = level1Button;
 		gameObject.sprites.level8Button = level2Button;
 		gameObject.sprites.level9Button = level1Button;
+		gameObject.sprites.BackButton = BackButton;
 
 		stage.addChild(levelMenuTitle);
 		stage.addChild(level1Button);
@@ -449,6 +465,7 @@ function levelMenu() {
 		stage.addChild(level7Button);
 		stage.addChild(level8Button);
 		stage.addChild(level9Button);
+		stage.addChild(BackButton);
 
 		delete gameObject.setupLevelMenu;
 
@@ -556,6 +573,20 @@ function levelSetup() {
 	scoreCounter.y = 2*canvasHeight/100;
 	gameObject.sprites.scoreCounter = scoreCounter;
 	stage.addChild(scoreCounter);
+
+	var BackButton = gameObject.t.button([PIXI.loader.resources["images/back_up.png"].texture, PIXI.loader.resources["images/back_over.png"].texture, PIXI.loader.resources["images/back_down.png"].texture], canvasWidth * 0.05, canvasHeight * 0.95);
+	BackButton.anchor.x = 0.5;
+	BackButton.anchor.y = 0.5;
+	BackButton.release = function() {
+		stage.removeChildren();
+		gameObject.t.buttons = [];
+		delete gameObject.setupLevelMenu;
+		gameObject.state = levelMenu;
+		gameObject.setupLevelMenu = true;
+	};
+	gameObject.sprites.BackButton = BackButton;
+	stage.addChild(BackButton);
+
 
 	//pulls out specfic level info
 	placementInfo = gameObject.courses[gameObject.courseNumber].levels[gameObject.levelNumber];
