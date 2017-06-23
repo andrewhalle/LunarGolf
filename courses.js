@@ -1314,15 +1314,15 @@ var courses = [
 				rotmoons: [
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.15,
+						scale_y: 0.15,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.2,
 						ylength: 0.2,
 						angle: 0,
 						angvelocity: .5,
-						m: 300
+						m: 500
 					},
 					{
 						filename: "images/rotmoon.png",
@@ -1338,15 +1338,15 @@ var courses = [
 					},
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.2,
+						scale_y: 0.2,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.2,
 						ylength: 0.2,
 						angle: 3.14/2,
 						angvelocity: .5,
-						m: 300
+						m: 700
 					},
 					{
 						filename: "images/rotmoon.png",
@@ -1386,15 +1386,15 @@ var courses = [
 					},
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.15,
+						scale_y: 0.15,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.4,
 						ylength: 0.4,
 						angle: 3.14/3,
 						angvelocity: 2,
-						m: 300
+						m: 500
 					},
 					{
 						filename: "images/rotmoon.png",
@@ -1422,27 +1422,27 @@ var courses = [
 					},
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.15,
+						scale_y: 0.15,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.4,
 						ylength: 0.4,
 						angle: 3.14/3 *(1/2),
 						angvelocity: 2,
-						m: 300
+						m: 500
 					},
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.15,
+						scale_y: 0.15,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.4,
 						ylength: 0.4,
 						angle: 3.14/3 *(7/2),
 						angvelocity: 2,
-						m: 300
+						m: 500
 					},
 					{
 						filename: "images/rotmoon.png",
@@ -1482,15 +1482,15 @@ var courses = [
 					},
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.15,
+						scale_y: 0.15,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.5,
 						ylength: 0.5,
 						angle: 3.14/2,
 						angvelocity: 4,
-						m: 300
+						m: 500
 					},
 					{
 						filename: "images/rotmoon.png",
@@ -1530,15 +1530,15 @@ var courses = [
 					},
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.15,
+						scale_y: 0.15,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.5,
 						ylength: 0.5,
 						angle: 3.14/2 + 3.14,
 						angvelocity: 4,
-						m: 300
+						m: 500
 					},
 					{
 						filename: "images/rotmoon.png",
@@ -1566,15 +1566,15 @@ var courses = [
 					},
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.2,
+						scale_y: 0.2,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.5,
 						ylength: 0.5,
 						angle: (3.14/2 + 3.14)*2,
 						angvelocity: 4,
-						m: 300
+						m: 700
 					},
 					{
 						filename: "images/rotmoon.png",
@@ -1590,15 +1590,15 @@ var courses = [
 					},
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.1,
-						scale_y: 0.1,
+						scale_x: 0.2,
+						scale_y: 0.2,
 						xcenter: 1.0,
 						ycenter: 0.5,
 						xlength: 0.6,
 						ylength: 0.6,
 						angle: 3.14,
 						angvelocity: 6,
-						m: 300
+						m: 700
 					},
 				],
 				blackhole: {
@@ -1611,5 +1611,5 @@ var courses = [
 				}
 			},
 		]
-	}
+	},
 ];
