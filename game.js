@@ -3,7 +3,18 @@ var canvasHeight = 500;
 var renderer = PIXI.autoDetectRenderer(canvasWidth, canvasHeight);
 var stage = new PIXI.Container();
 document.body.appendChild(renderer.view);
+resizeBorders();
 b = new Bump(PIXI);
+
+function resizeBorders() {
+	var c = document.getElementsByTagName("CANVAS")[0];
+	m_left = Math.max((window.innerWidth - 1000) / 2, 0);
+	m_top = Math.max((window.innerHeight - 500) * 0.4, 0);
+	c.style.marginLeft = m_left.toString() + "px";
+	c.style.marginTop = m_top.toString() + "px";
+}
+
+window.addEventListener("resize", resizeBorders);
 
 var gameObject = {};
 gameObject.time = 0;
