@@ -2020,50 +2020,102 @@ var courses = [
 			{
 				planet: {
 					filename: "images/planet.png",
-					scale_x: 0.2,
-					scale_y: 0.2,
-					x: 0.15, //percentage of canvasWidth
+					scale_x: 0.15,
+					scale_y: 0.15,
+					x: 0.1, //percentage of canvasWidth
 					y: 0.75, //percentage of canvasHeight
-					m: 100
+					m: 200
 				},
 				moons: [
 					{
 						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
+						scale_x: 0.15,
+						scale_y: 0.15,
 						x: 0.35,
 						y: 0.35,
 						m: 500
 					},
 					{
 						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
+						scale_x: 0.15,
+						scale_y: 0.15,
 						x: 0.5,
 						y: 0.5,
+						m: 800
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.15,
+						scale_y: 0.15,
+						x: 0.65,
+						y: 0.65,
 						m: 500
 					},
 					{
 						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.65,
+						scale_x: 0.15,
+						scale_y: 0.15,
+						x: 0.35,
 						y: 0.65,
+						m: 500
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.15,
+						scale_y: 0.15,
+						x: 0.65,
+						y: 0.35,
 						m: 500
 					}
 				],
 				rotmoons: [
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						xcenter: 5,
-						ycenter: 5,
-						xlength: 0,
-						ylength: 0,
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.1,
+						ycenter: 0.75,
+						xlength: 0.15,
+						ylength: 0.15,
 						angle: 0,
-						angvelocity: 1,
-						m: 1
+						angvelocity: 3,
+						m: 100
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.85,
+						ycenter: 0.35,
+						xlength: 0.1,
+						ylength: 0.15,
+						angle: 0,
+						angvelocity: 3.5,
+						m: 100
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.1,
+						ycenter: 0.75,
+						xlength: 0.15,
+						ylength: 0.15,
+						angle: 3.14,
+						angvelocity: 3,
+						m: 100
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.85,
+						ycenter: 0.35,
+						xlength: 0.1,
+						ylength: 0.15,
+						angle: 3.14,
+						angvelocity: 3.5,
+						m: 100
 					}
 				],
 				blackhole: {
@@ -2071,8 +2123,8 @@ var courses = [
 					scale_x: 0.5,
 					scale_y: 0.5,
 					x: 0.85,
-					y: 0.25,
-					m: 1000
+					y: 0.35,
+					m: 900
 				}
 			},
 			//level 6
@@ -2081,24 +2133,16 @@ var courses = [
 					filename: "images/planet.png",
 					scale_x: 0.2,
 					scale_y: 0.2,
-					x: 0.15, //percentage of canvasWidth
-					y: 0.5, //percentage of canvasHeight
-					m: 100
+					x: 0.85, //percentage of canvasWidth
+					y: 0.25, //percentage of canvasHeight
+					m: 200
 				},
 				moons: [
 					{
 						filename: "images/moon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
-						x: 0.3,
-						y: 0.7,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.55,
+						x: 0.7,
 						y: 0.15,
 						m: 500
 					},
@@ -2107,30 +2151,80 @@ var courses = [
 						scale_x: 0.2,
 						scale_y: 0.2,
 						x: 0.7,
-						y: 0.35,
+						y: 0.45,
 						m: 500
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.3,
+						scale_y: 0.3,
+						x: 0.45,
+						y: 0.75,
+						m: 900
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.3,
+						scale_y: 0.3,
+						x: 0.50,
+						y: 0.15,
+						m: 900
 					}
 				],
 				rotmoons: [
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						xcenter: 5,
-						ycenter: 5,
-						xlength: 0,
-						ylength: 0,
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.15,
+						ycenter: 0.35,
+						xlength: 0.1,
+						ylength: 0.15,
 						angle: 0,
-						angvelocity: 1,
-						m: 1
+						angvelocity: 4,
+						m: 200
+					},{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.15,
+						ycenter: 0.35,
+						xlength: 0.1,
+						ylength: 0.15,
+						angle: 3.14,
+						angvelocity: 4,
+						m: 200
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.45,
+						ycenter: 0.75,
+						xlength: 0.15,
+						ylength: 0.15,
+						angle: 0,
+						angvelocity: 4.3,
+						m: 200
+					},{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.45,
+						ycenter: 0.75,
+						xlength: 0.15,
+						ylength: 0.15,
+						angle: 3.14,
+						angvelocity: 4.3,
+						m: 200
 					}
 				],
 				blackhole: {
 					filename: "images/blackhole.png",
 					scale_x: 0.5,
 					scale_y: 0.5,
-					x: 0.85,
-					y: 0.45,
+					x: 0.15,
+					y: 0.35,
 					m: 1000
 				}
 			},
