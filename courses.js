@@ -2235,62 +2235,190 @@ var courses = [
 					scale_x: 0.2,
 					scale_y: 0.2,
 					x: 0.15, //percentage of canvasWidth
-					y: 0.5, //percentage of canvasHeight
+					y: 0.2, //percentage of canvasHeight
 					m: 100
 				},
 				moons: [
 					{
 						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
+						scale_x: 0.3,
+						scale_y: 0.3,
 						x: 0.4,
-						y: 0.5,
+						y: 0.0,
 						m: 500
 					},
 					{
 						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
+						scale_x: 0.3,
+						scale_y: 0.3,
 						x: 0.6,
-						y: 0.5,
+						y: 0.0,
 						m: 500
 					},
 					{
 						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
+						scale_x: 0.3,
+						scale_y: 0.3,
 						x: 0.8,
-						y: 0.25,
+						y: 0.0,
 						m: 500
 					},
 					{
 						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 1,
-						y: 0.5,
+						scale_x: 0.3,
+						scale_y: 0.3,
+						x: 0.4,
+						y: 1.0,
 						m: 500
 					},
 					{
 						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
+						scale_x: 0.3,
+						scale_y: 0.3,
+						x: 0.6,
+						y: 1.0,
+						m: 500
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.3,
+						scale_y: 0.3,
 						x: 0.8,
-						y: 0.75,
+						y: 1.0,
 						m: 500
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.3,
+						scale_y: 0.3,
+						x: 1.0,
+						y: 0.3,
+						m: 500
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.3,
+						scale_y: 0.3,
+						x: 1.0,
+						y: 0.7,
+						m: 500
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.3,
+						scale_y: 0.3,
+						x: 0.5,
+						y: 0.5,
+						m: 1000
 					}
 				],
 				rotmoons: [
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						xcenter: 5,
-						ycenter: 5,
-						xlength: 0,
-						ylength: 0,
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.4,
+						ycenter: 0.0,
+						xlength: 0.14,
+						ylength: 0.14,
+						angle: 0,
+						angvelocity: -1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.6,
+						ycenter: 0.0,
+						xlength: 0.14,
+						ylength: 0.14,
+						angle: 0,
+						angvelocity: -1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.0,
+						xlength: 0.14,
+						ylength: 0.14,
+						angle: 0,
+						angvelocity: -1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.4,
+						ycenter: 1.0,
+						xlength: 0.14,
+						ylength: 0.14,
 						angle: 0,
 						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.6,
+						ycenter: 1.0,
+						xlength: 0.14,
+						ylength: 0.14,
+						angle: 0,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 1.0,
+						xlength: 0.14,
+						ylength: 0.14,
+						angle: 0,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 1.0,
+						ycenter: 0.3,
+						xlength: 0.14,
+						ylength: 0.14,
+						angle: 0,
+						angvelocity: -1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 1.0,
+						ycenter: 0.7,
+						xlength: 0.14,
+						ylength: 0.14,
+						angle: 0,
+						angvelocity: -1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.5,
+						ycenter: 0.5,
+						xlength: 0.14,
+						ylength: 0.14,
+						angle: 0,
+						angvelocity: -1,
 						m: 1
 					}
 				],
@@ -2298,8 +2426,8 @@ var courses = [
 					filename: "images/blackhole.png",
 					scale_x: 0.5,
 					scale_y: 0.5,
-					x: 0.8,
-					y: 0.5,
+					x: 0.85,
+					y: 0.7,
 					m: 1000
 				}
 			},
@@ -2310,7 +2438,7 @@ var courses = [
 					scale_x: 0.2,
 					scale_y: 0.2,
 					x: 0.15, //percentage of canvasWidth
-					y: 0.25, //percentage of canvasHeight
+					y: 0.5,  //percentage of canvasHeight
 					m: 100
 				},
 				moons: [
@@ -2318,171 +2446,866 @@ var courses = [
 						filename: "images/moon.png",
 						scale_x: 0.2,
 						scale_y: 0.2,
-						x: 0.25,
-						y: 0.45,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.4,
-						y: 0.5,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.7,
-						y: 0.3,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.8,
-						y: 0.6,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.2,
-						y: 0.7,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.4,
-						y: 0.8,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.9,
-						y: 0.4,
-						m: 500
-					}
-				],
-				rotmoons: [
-					{
-						filename: "images/rotmoon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						xcenter: 5,
-						ycenter: 5,
-						xlength: 0,
-						ylength: 0,
-						angle: 0,
-						angvelocity: 1,
+						x: 5,
+						y: 5,
 						m: 1
 					}
 				],
-				blackhole: {
-					filename: "images/blackhole.png",
-					scale_x: 0.5,
-					scale_y: 0.5,
-					x: 0.9,
-					y: 0.75,
-					m: 2000
-				}
-			},
-			//level 9
-			{
-				planet: {
-					filename: "images/planet.png",
-					scale_x: 0.2,
-					scale_y: 0.2,
-					x: 0.1, //percentage of canvasWidth
-					y: 0.35, //percentage of canvasHeight
-					m: 100
-				},
-				moons: [
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.3,
-						y: 0.3,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.5,
-						y: 0.3,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.7,
-						y: 0.3,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.9,
-						y: 0.3,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.3,
-						y: 0.7,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.5,
-						y: 0.7,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.7,
-						y: 0.7,
-						m: 500
-					},
-					{
-						filename: "images/moon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						x: 0.9,
-						y: 0.7,
-						m: 500
-					}
-				],
 				rotmoons: [
+					// begin arm 
 					{
 						filename: "images/rotmoon.png",
-						scale_x: 0.2,
-						scale_y: 0.2,
-						xcenter: 5,
-						ycenter: 5,
-						xlength: 0,
-						ylength: 0,
-						angle: 0,
+						scale_x: 0.05,
+						scale_y: 0.05,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 0.9,
+						angvelocity: -1.1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 0.9,
 						angvelocity: 1,
 						m: 1
-					}
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.3,
+						ylength: 0.3,
+						angle: 0.9,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.4,
+						ylength: 0.4,
+						angle: 0.9,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.5,
+						ylength: 0.5,
+						angle: 0.9,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.6,
+						ylength: 0.6,
+						angle: 0.9,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.7,
+						ylength: 0.7,
+						angle: 0.9,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.8,
+						ylength: 0.8,
+						angle: 0.9,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.9,
+						ylength: 0.9,
+						angle: 0.9,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 1.0,
+						ylength: 1.0,
+						angle: 0.9,
+						angvelocity: 1,
+						m: 1
+					},
+					// end arm
+					// begin arm
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.05,
+						scale_y: 0.05,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 1.8,
+						angvelocity: -1.1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.3,
+						ylength: 0.3,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.4,
+						ylength: 0.4,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.5,
+						ylength: 0.5,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.6,
+						ylength: 0.6,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.7,
+						ylength: 0.7,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.8,
+						ylength: 0.8,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.9,
+						ylength: 0.9,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 1.0,
+						ylength: 1.0,
+						angle: 1.8,
+						angvelocity: 1,
+						m: 1
+					},
+					// end arm
+					// begin arm
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.05,
+						scale_y: 0.05,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 2.7,
+						angvelocity: -1.1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.3,
+						ylength: 0.3,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.4,
+						ylength: 0.4,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.5,
+						ylength: 0.5,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.6,
+						ylength: 0.6,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.7,
+						ylength: 0.7,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.8,
+						ylength: 0.8,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.9,
+						ylength: 0.9,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 1.0,
+						ylength: 1.0,
+						angle: 2.7,
+						angvelocity: 1,
+						m: 1
+					},
+					// end arm
+					// begin arm
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.05,
+						scale_y: 0.05,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 3.6,
+						angvelocity: -1.1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.3,
+						ylength: 0.3,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.4,
+						ylength: 0.4,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.5,
+						ylength: 0.5,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.6,
+						ylength: 0.6,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.7,
+						ylength: 0.7,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.8,
+						ylength: 0.8,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.9,
+						ylength: 0.9,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 1.0,
+						ylength: 1.0,
+						angle: 3.6,
+						angvelocity: 1,
+						m: 1
+					},
+					// end arm
+					// begin arm
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.05,
+						scale_y: 0.05,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 4.5,
+						angvelocity: -1.1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.3,
+						ylength: 0.3,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.4,
+						ylength: 0.4,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.5,
+						ylength: 0.5,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.6,
+						ylength: 0.6,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.7,
+						ylength: 0.7,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.8,
+						ylength: 0.8,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.9,
+						ylength: 0.9,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 1.0,
+						ylength: 1.0,
+						angle: 4.5,
+						angvelocity: 1,
+						m: 1
+					},
+					// end arm
+					// begin arm
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.05,
+						scale_y: 0.05,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 5.4,
+						angvelocity: -1.1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.3,
+						ylength: 0.3,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.4,
+						ylength: 0.4,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.5,
+						ylength: 0.5,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.6,
+						ylength: 0.6,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.7,
+						ylength: 0.7,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.8,
+						ylength: 0.8,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.9,
+						ylength: 0.9,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 1.0,
+						ylength: 1.0,
+						angle: 5.4,
+						angvelocity: 1,
+						m: 1
+					},
+					// end arm
+					// begin arm
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.05,
+						scale_y: 0.05,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.1,
+						ylength: 0.1,
+						angle: 6.3,
+						angvelocity: -1.1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.2,
+						ylength: 0.2,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.3,
+						ylength: 0.3,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.4,
+						ylength: 0.4,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.5,
+						ylength: 0.5,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.6,
+						ylength: 0.6,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.7,
+						ylength: 0.7,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.8,
+						ylength: 0.8,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 0.9,
+						ylength: 0.9,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						xcenter: 0.8,
+						ycenter: 0.5,
+						xlength: 1.0,
+						ylength: 1.0,
+						angle: 6.3,
+						angvelocity: 1,
+						m: 1
+					},
+					// end arm
 				],
 				blackhole: {
 					filename: "images/blackhole.png",
@@ -2491,6 +3314,313 @@ var courses = [
 					x: 0.8,
 					y: 0.5,
 					m: 2000
+				}
+			},
+			//level 9
+			{
+				planet: {
+					filename: "images/planet.png",
+					scale_x: 0.1,
+					scale_y: 0.1,
+					x: 0.9, //percentage of canvasWidth
+					y: 0.85, //percentage of canvasHeight
+					m: 100
+				},
+				moons: [
+					// begin bottom
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.1,
+						y: 1.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.2,
+						y: 1.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.3,
+						y: 1.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.4,
+						y: 1.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.5,
+						y: 1.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.6,
+						y: 1.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.7,
+						y: 1.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.8,
+						y: 1.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.9,
+						y: 1.0,
+						m: 100
+					},
+					// end bottom
+					// begin top
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.4,
+						y: 0.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.5,
+						y: 0.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.6,
+						y: 0.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.7,
+						y: 0.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.8,
+						y: 0.0,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.9,
+						y: 0.0,
+						m: 100
+					},
+					// end top
+					// begin 1st level
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.2,
+						y: 0.7,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.3,
+						y: 0.7,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.4,
+						y: 0.7,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.5,
+						y: 0.7,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.6,
+						y: 0.7,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.7,
+						y: 0.7,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.8,
+						y: 0.7,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.9,
+						y: 0.7,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 1.0,
+						y: 0.7,
+						m: 100
+					},
+					// end 1st level
+					// begin 2nd level
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.0,
+						y: 0.3,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.1,
+						y: 0.3,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.2,
+						y: 0.3,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.3,
+						y: 0.3,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.4,
+						y: 0.3,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.5,
+						y: 0.3,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.6,
+						y: 0.3,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.7,
+						y: 0.3,
+						m: 100
+					},
+					{
+						filename: "images/moon.png",
+						scale_x: 0.1,
+						scale_y: 0.1,
+						x: 0.8,
+						y: 0.3,
+						m: 400
+					},
+					// end 2nd level
+				],
+				rotmoons: [
+					{
+						filename: "images/rotmoon.png",
+						scale_x: 0.2,
+						scale_y: 0.2,
+						xcenter: 5,
+						ycenter: 5,
+						xlength: 0,
+						ylength: 0,
+						angle: 0,
+						angvelocity: 1,
+						m: 1
+					}
+				],
+				blackhole: {
+					filename: "images/blackhole.png",
+					scale_x: 0.5,
+					scale_y: 0.5,
+					x: 0.1,
+					y: 0.1,
+					m: 3000
 				}
 			}
 		]
